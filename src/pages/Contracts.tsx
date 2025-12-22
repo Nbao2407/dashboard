@@ -60,12 +60,24 @@ const statusVariants: Record<ContractStatus, "default" | "secondary" | "destruct
   COMPLETED: "default",
 };
 
+// Mock data for demo purposes
+const mockContracts = [
+  { id: "1", code: "HD-2024-001", name: "Hợp đồng thuê kho A1 - Q1/2024", status: "ACTIVE" as ContractStatus, started_at: "2024-01-01", expired_at: "2024-12-31", total_price: 120000000, final_price: 108000000, notes: "Hợp đồng thuê dài hạn 12 tháng" },
+  { id: "2", code: "HD-2024-002", name: "Hợp đồng thuê kho Q7 - Q1/2024", status: "ACTIVE" as ContractStatus, started_at: "2024-02-15", expired_at: "2025-02-14", total_price: 96000000, final_price: 96000000, notes: "Hợp đồng thuê 1 năm" },
+  { id: "3", code: "HD-2024-003", name: "Hợp đồng thuê ô kệ B2", status: "PENDING" as ContractStatus, started_at: "2024-03-01", expired_at: "2024-08-31", total_price: 30000000, final_price: 28500000, notes: "Đang chờ duyệt" },
+  { id: "4", code: "HD-2024-004", name: "Hợp đồng mùa cao điểm", status: "OVERDUE_LEVEL_1" as ContractStatus, started_at: "2023-06-01", expired_at: "2023-12-31", total_price: 60000000, final_price: 57000000, notes: "Quá hạn thanh toán đợt 2" },
+  { id: "5", code: "HD-2023-015", name: "Hợp đồng kho lạnh", status: "COMPLETED" as ContractStatus, started_at: "2023-01-01", expired_at: "2023-12-31", total_price: 180000000, final_price: 162000000, notes: "Đã hoàn thành" },
+  { id: "6", code: "HD-2024-005", name: "Hợp đồng thuê vị trí D3", status: "CANCELLED" as ContractStatus, started_at: "2024-01-15", expired_at: "2024-07-14", total_price: 45000000, final_price: 45000000, notes: "Khách hàng hủy hợp đồng" },
+  { id: "7", code: "HD-2024-006", name: "Hợp đồng kho ngắn hạn", status: "ACTIVE" as ContractStatus, started_at: "2024-04-01", expired_at: "2024-06-30", total_price: 24000000, final_price: 22800000, notes: "Thuê 3 tháng" },
+  { id: "8", code: "HD-2024-007", name: "Hợp đồng đối tác VIP", status: "SEALED" as ContractStatus, started_at: "2024-02-01", expired_at: "2025-01-31", total_price: 240000000, final_price: 204000000, notes: "Hợp đồng VIP, ưu đãi đặc biệt" },
+];
+
 const Contracts = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
 
-  const { data: contracts, isLoading } = useQuery({
+  const { data: dbContracts, isLoading } = useQuery({
     queryKey: ["rental_contracts"],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -78,6 +90,9 @@ const Contracts = () => {
       return data;
     },
   });
+
+  // Use mock data if no real data exists
+  const contracts = dbContracts && dbContracts.length > 0 ? dbContracts : mockContracts;
 
   const filteredContracts = contracts?.filter((contract) => {
     const matchesSearch =
