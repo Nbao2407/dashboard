@@ -25,31 +25,81 @@ import {
   Filter,
   FileText,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Loader2
 } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { format } from "date-fns";
+import { vi } from "date-fns/locale";
+import type { Database } from "@/integrations/supabase/types";
 
-const contractsData = [
-  { id: "HD001", customer: "Công ty TNHH ABC", warehouse: "Kho Hà Nội", startDate: "01/01/2024", endDate: "31/12/2024", value: "500,000,000 ₫", status: "Đang hiệu lực" },
-  { id: "HD002", customer: "Công ty CP XYZ", warehouse: "Kho Đà Nẵng", startDate: "15/02/2024", endDate: "14/02/2025", value: "750,000,000 ₫", status: "Đang hiệu lực" },
-  { id: "HD003", customer: "Công ty TNHH DEF", warehouse: "Kho TP.HCM", startDate: "01/03/2024", endDate: "28/02/2025", value: "1,200,000,000 ₫", status: "Đang hiệu lực" },
-  { id: "HD004", customer: "Công ty CP GHI", warehouse: "Kho Hải Phòng", startDate: "01/06/2023", endDate: "31/05/2024", value: "300,000,000 ₫", status: "Hết hạn" },
-  { id: "HD005", customer: "Công ty TNHH JKL", warehouse: "Kho Cần Thơ", startDate: "01/04/2024", endDate: "31/03/2025", value: "450,000,000 ₫", status: "Chờ ký" },
-];
+type ContractStatus = Database["public"]["Enums"]["contract_status"];
+
+const statusLabels: Record<ContractStatus, string> = {
+  PENDING: "Chờ duyệt",
+  ACTIVE: "Đang hiệu lực",
+  OVERDUE_LEVEL_1: "Quá hạn cấp 1",
+  OVERDUE_LEVEL_2: "Quá hạn cấp 2",
+  OVERDUE_LEVEL_3: "Quá hạn cấp 3",
+  SEALED: "Đã niêm phong",
+  LIQUIDATED: "Đã thanh lý",
+  CANCELLED: "Đã hủy",
+  COMPLETED: "Hoàn thành",
+};
+
+const statusVariants: Record<ContractStatus, "default" | "secondary" | "destructive" | "outline"> = {
+  PENDING: "secondary",
+  ACTIVE: "default",
+  OVERDUE_LEVEL_1: "destructive",
+  OVERDUE_LEVEL_2: "destructive",
+  OVERDUE_LEVEL_3: "destructive",
+  SEALED: "outline",
+  LIQUIDATED: "outline",
+  CANCELLED: "destructive",
+  COMPLETED: "default",
+};
 
 const Contracts = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState<string>("all");
 
-  const getStatusVariant = (status: string) => {
-    switch (status) {
-      case "Đang hiệu lực":
-        return "default";
-      case "Hết hạn":
-        return "destructive";
-      case "Chờ ký":
-        return "secondary";
-      default:
-        return "outline";
-    }
+  const { data: contracts, isLoading } = useQuery({
+    queryKey: ["rental_contracts"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("rental_contracts")
+        .select("*")
+        .eq("is_deleted", false)
+        .order("created_at", { ascending: false });
+
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  const filteredContracts = contracts?.filter((contract) => {
+    const matchesSearch =
+      contract.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      contract.name?.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesStatus =
+      statusFilter === "all" || contract.status === statusFilter;
+
+    return matchesSearch && matchesStatus;
+  });
+
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(value);
+  };
+
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return "-";
+    return format(new Date(dateString), "dd/MM/yyyy", { locale: vi });
   };
 
   return (
@@ -88,17 +138,28 @@ const Contracts = () => {
           <div className="flex flex-col sm:flex-row gap-3 mb-6">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input placeholder="Tìm kiếm hợp đồng..." className="pl-9" />
+              <Input 
+                placeholder="Tìm kiếm theo mã hoặc tên hợp đồng..." 
+                className="pl-9"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
             </div>
-            <Select>
-              <SelectTrigger className="w-full sm:w-40">
+            <Select value={statusFilter} onValueChange={setStatusFilter}>
+              <SelectTrigger className="w-full sm:w-48">
                 <SelectValue placeholder="Trạng thái" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Tất cả</SelectItem>
-                <SelectItem value="active">Đang hiệu lực</SelectItem>
-                <SelectItem value="expired">Hết hạn</SelectItem>
-                <SelectItem value="pending">Chờ ký</SelectItem>
+                <SelectItem value="all">Tất cả trạng thái</SelectItem>
+                <SelectItem value="PENDING">Chờ duyệt</SelectItem>
+                <SelectItem value="ACTIVE">Đang hiệu lực</SelectItem>
+                <SelectItem value="OVERDUE_LEVEL_1">Quá hạn cấp 1</SelectItem>
+                <SelectItem value="OVERDUE_LEVEL_2">Quá hạn cấp 2</SelectItem>
+                <SelectItem value="OVERDUE_LEVEL_3">Quá hạn cấp 3</SelectItem>
+                <SelectItem value="SEALED">Đã niêm phong</SelectItem>
+                <SelectItem value="LIQUIDATED">Đã thanh lý</SelectItem>
+                <SelectItem value="CANCELLED">Đã hủy</SelectItem>
+                <SelectItem value="COMPLETED">Hoàn thành</SelectItem>
               </SelectContent>
             </Select>
             <Button variant="outline" className="gap-2">
@@ -113,37 +174,54 @@ const Contracts = () => {
               <TableHeader>
                 <TableRow>
                   <TableHead>Mã HĐ</TableHead>
-                  <TableHead>Khách hàng</TableHead>
-                  <TableHead>Kho</TableHead>
+                  <TableHead>Tên hợp đồng</TableHead>
                   <TableHead>Ngày bắt đầu</TableHead>
-                  <TableHead>Ngày kết thúc</TableHead>
-                  <TableHead>Giá trị</TableHead>
+                  <TableHead>Ngày hết hạn</TableHead>
+                  <TableHead className="text-right">Tổng giá trị</TableHead>
+                  <TableHead className="text-right">Giá sau CK</TableHead>
                   <TableHead>Trạng thái</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {contractsData.map((contract) => (
-                  <TableRow key={contract.id}>
-                    <TableCell className="font-medium">{contract.id}</TableCell>
-                    <TableCell>{contract.customer}</TableCell>
-                    <TableCell>{contract.warehouse}</TableCell>
-                    <TableCell>{contract.startDate}</TableCell>
-                    <TableCell>{contract.endDate}</TableCell>
-                    <TableCell>{contract.value}</TableCell>
-                    <TableCell>
-                      <Badge variant={getStatusVariant(contract.status)}>
-                        {contract.status}
-                      </Badge>
+                {isLoading ? (
+                  <TableRow>
+                    <TableCell colSpan={7} className="h-24 text-center">
+                      <div className="flex items-center justify-center gap-2">
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        <span>Đang tải...</span>
+                      </div>
                     </TableCell>
                   </TableRow>
-                ))}
+                ) : filteredContracts && filteredContracts.length > 0 ? (
+                  filteredContracts.map((contract) => (
+                    <TableRow key={contract.id}>
+                      <TableCell className="font-medium">{contract.code}</TableCell>
+                      <TableCell>{contract.name || "-"}</TableCell>
+                      <TableCell>{formatDate(contract.started_at)}</TableCell>
+                      <TableCell>{formatDate(contract.expired_at)}</TableCell>
+                      <TableCell className="text-right">{formatCurrency(contract.total_price)}</TableCell>
+                      <TableCell className="text-right">{formatCurrency(contract.final_price)}</TableCell>
+                      <TableCell>
+                        <Badge variant={statusVariants[contract.status as ContractStatus]}>
+                          {statusLabels[contract.status as ContractStatus]}
+                        </Badge>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={7} className="h-24 text-center text-muted-foreground">
+                      Không tìm thấy hợp đồng nào
+                    </TableCell>
+                  </TableRow>
+                )}
               </TableBody>
             </Table>
 
             {/* Pagination */}
             <div className="flex items-center justify-between px-4 py-3 border-t">
               <p className="text-sm text-muted-foreground">
-                Hiển thị 1-5 trong tổng số 5 hợp đồng
+                Hiển thị {filteredContracts?.length || 0} hợp đồng
               </p>
               <div className="flex items-center gap-2">
                 <Button variant="outline" size="sm" disabled>
