@@ -1447,6 +1447,12 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_contract_org_id: { Args: { _contract_id: string }; Returns: string }
+      get_product_org_id: { Args: { _product_id: string }; Returns: string }
+      get_rack_org_id: { Args: { _rack_id: string }; Returns: string }
+      get_row_org_id: { Args: { _row_id: string }; Returns: string }
+      get_shelf_org_id: { Args: { _shelf_id: string }; Returns: string }
+      get_warehouse_org_id: { Args: { _warehouse_id: string }; Returns: string }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
