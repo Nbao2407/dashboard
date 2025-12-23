@@ -11,36 +11,36 @@ interface StatCardProps {
     value: number;
     isPositive: boolean;
   };
-  variant?: "green" | "yellow" | "blue" | "orange" | "red";
+  variant?: "teal" | "cyan" | "green" | "orange" | "red";
   showProgress?: boolean;
   progressValue?: number;
 }
 
 const variantStyles = {
-  green: {
-    card: "bg-[hsl(142,76%,95%)] border-[hsl(142,60%,85%)]",
-    icon: "bg-[hsl(142,76%,85%)] text-[hsl(142,76%,30%)]",
-    trend: "text-[hsl(142,76%,36%)] bg-[hsl(142,76%,90%)]",
+  teal: {
+    card: "bg-[hsl(173,77%,95%)] border-[hsl(173,60%,85%)]",
+    icon: "bg-[hsl(173,77%,85%)] text-[hsl(173,77%,25%)]",
+    trend: "text-[hsl(173,77%,30%)] bg-[hsl(173,77%,90%)]",
   },
-  yellow: {
-    card: "bg-[hsl(45,93%,95%)] border-[hsl(45,80%,85%)]",
-    icon: "bg-[hsl(45,93%,80%)] text-[hsl(45,93%,30%)]",
-    trend: "text-[hsl(45,93%,35%)] bg-[hsl(45,93%,88%)]",
-  },
-  blue: {
+  cyan: {
     card: "bg-[hsl(199,89%,95%)] border-[hsl(199,70%,85%)]",
     icon: "bg-[hsl(199,89%,85%)] text-[hsl(199,89%,35%)]",
     trend: "text-[hsl(199,89%,40%)] bg-[hsl(199,89%,90%)]",
   },
+  green: {
+    card: "bg-[hsl(160,84%,95%)] border-[hsl(160,70%,85%)]",
+    icon: "bg-[hsl(160,84%,85%)] text-[hsl(160,84%,30%)]",
+    trend: "text-[hsl(160,84%,35%)] bg-[hsl(160,84%,90%)]",
+  },
   orange: {
-    card: "bg-[hsl(25,95%,95%)] border-[hsl(25,80%,85%)]",
-    icon: "bg-[hsl(25,95%,85%)] text-[hsl(25,95%,35%)]",
-    trend: "text-[hsl(25,95%,40%)] bg-[hsl(25,95%,90%)]",
+    card: "bg-[hsl(38,92%,95%)] border-[hsl(38,80%,85%)]",
+    icon: "bg-[hsl(38,92%,80%)] text-[hsl(38,92%,30%)]",
+    trend: "text-[hsl(38,92%,35%)] bg-[hsl(38,92%,88%)]",
   },
   red: {
-    card: "bg-[hsl(0,72%,95%)] border-[hsl(0,60%,85%)]",
-    icon: "bg-[hsl(0,72%,85%)] text-[hsl(0,72%,40%)]",
-    trend: "text-[hsl(0,72%,45%)] bg-[hsl(0,72%,90%)]",
+    card: "bg-[hsl(0,84%,95%)] border-[hsl(0,70%,85%)]",
+    icon: "bg-[hsl(0,84%,85%)] text-[hsl(0,84%,40%)]",
+    trend: "text-[hsl(0,84%,45%)] bg-[hsl(0,84%,90%)]",
   },
 };
 
