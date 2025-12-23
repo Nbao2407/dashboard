@@ -30,21 +30,21 @@ const Index = () => {
               value="23,340 Units"
               icon={Package}
               trend={{ value: 25, isPositive: true }}
-              variant="green"
+              variant="teal"
             />
             <StatCard
               title="Total Inventory Value"
               value="$23,56847"
               icon={DollarSign}
               trend={{ value: 25, isPositive: true }}
-              variant="yellow"
+              variant="cyan"
             />
             <StatCard
               title="Total Picking Accuracy"
               value="90%"
               icon={Target}
               trend={{ value: 5, isPositive: true }}
-              variant="blue"
+              variant="green"
               showProgress
               progressValue={90}
             />

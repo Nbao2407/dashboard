@@ -41,7 +41,7 @@ export function WarehouseChart() {
       <CardContent>
         <div className="flex items-center gap-4 mb-4">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[hsl(75,85%,55%)]" />
+            <div className="w-3 h-3 rounded-full bg-primary" />
             <span className="text-sm text-muted-foreground">Profit</span>
           </div>
           <div className="flex items-center gap-2">
@@ -54,12 +54,12 @@ export function WarehouseChart() {
           <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="colorProfit" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="hsl(75, 85%, 55%)" stopOpacity={0.3} />
-                <stop offset="95%" stopColor="hsl(75, 85%, 55%)" stopOpacity={0} />
+                <stop offset="5%" stopColor="hsl(173, 77%, 35%)" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="hsl(173, 77%, 35%)" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="colorInvest" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="hsl(220, 20%, 15%)" stopOpacity={0.1} />
-                <stop offset="95%" stopColor="hsl(220, 20%, 15%)" stopOpacity={0} />
+                <stop offset="5%" stopColor="hsl(199, 89%, 48%)" stopOpacity={0.2} />
+                <stop offset="95%" stopColor="hsl(199, 89%, 48%)" stopOpacity={0} />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" className="stroke-border" vertical={false} />
@@ -87,7 +87,7 @@ export function WarehouseChart() {
             <Area
               type="monotone"
               dataKey="profit"
-              stroke="hsl(75, 85%, 55%)"
+              stroke="hsl(173, 77%, 35%)"
               strokeWidth={2}
               fillOpacity={1}
               fill="url(#colorProfit)"
@@ -96,7 +96,7 @@ export function WarehouseChart() {
             <Area
               type="monotone"
               dataKey="invest"
-              stroke="hsl(220, 20%, 15%)"
+              stroke="hsl(199, 89%, 48%)"
               strokeWidth={2}
               fillOpacity={1}
               fill="url(#colorInvest)"

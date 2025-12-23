@@ -23,24 +23,24 @@ export function CapacityGuide() {
                 stroke="hsl(var(--muted))"
                 strokeWidth="12"
               />
-              {/* Warning zone (yellow) */}
+              {/* Warning zone (cyan) */}
               <circle
                 cx="50"
                 cy="50"
                 r="40"
                 fill="none"
-                stroke="hsl(45, 93%, 47%)"
+                stroke="hsl(199, 89%, 48%)"
                 strokeWidth="12"
                 strokeDasharray="201.06"
                 strokeDashoffset="36.19"
               />
-              {/* Main zone (green) */}
+              {/* Main zone (teal) */}
               <circle
                 cx="50"
                 cy="50"
                 r="40"
                 fill="none"
-                stroke="hsl(75, 85%, 55%)"
+                stroke="hsl(173, 77%, 35%)"
                 strokeWidth="12"
                 strokeDasharray="164.87"
                 strokeDashoffset="0"
@@ -56,11 +56,11 @@ export function CapacityGuide() {
           {/* Legend */}
           <div className="flex-1 space-y-2">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-sm bg-[hsl(75,85%,55%)]" />
+              <div className="w-3 h-3 rounded-sm bg-primary" />
               <span className="text-xs">Products are In Warning Zone</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-sm bg-[hsl(45,93%,47%)]" />
+              <div className="w-3 h-3 rounded-sm bg-accent" />
               <span className="text-xs">Products are In Rack Zone</span>
             </div>
           </div>

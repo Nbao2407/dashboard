@@ -58,16 +58,16 @@ export function DashboardSidebar({ isOpen, onClose }: DashboardSidebarProps) {
       )}>
         {/* Logo */}
         <div className="h-16 flex items-center justify-between px-4 border-b border-sidebar-border">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3">
             <div className="h-8 w-8 rounded-lg bg-sidebar-primary flex items-center justify-center">
               <Package className="h-4 w-4 text-sidebar-primary-foreground" />
             </div>
             {!collapsed && (
-              <span className="font-bold text-lg text-white">vault</span>
+              <span className="font-bold text-lg text-white">GenHub</span>
             )}
           </div>
           <Button 
-            variant="ghost" 
+            variant="ghost"
             size="icon" 
             className="md:hidden text-sidebar-foreground hover:text-white hover:bg-sidebar-accent"
             onClick={onClose}
