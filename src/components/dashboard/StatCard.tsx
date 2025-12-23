@@ -1,7 +1,6 @@
-import { LucideIcon, ArrowUpRight } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Progress } from "@/components/ui/progress";
 
 interface StatCardProps {
   title: string;
@@ -11,85 +10,46 @@ interface StatCardProps {
     value: number;
     isPositive: boolean;
   };
-  variant?: "teal" | "cyan" | "green" | "orange" | "red";
-  showProgress?: boolean;
-  progressValue?: number;
+  variant?: "default" | "primary" | "success" | "warning" | "info";
 }
 
 const variantStyles = {
-  teal: {
-    card: "bg-[hsl(173,77%,95%)] border-[hsl(173,60%,85%)]",
-    icon: "bg-[hsl(173,77%,85%)] text-[hsl(173,77%,25%)]",
-    trend: "text-[hsl(173,77%,30%)] bg-[hsl(173,77%,90%)]",
-  },
-  cyan: {
-    card: "bg-[hsl(199,89%,95%)] border-[hsl(199,70%,85%)]",
-    icon: "bg-[hsl(199,89%,85%)] text-[hsl(199,89%,35%)]",
-    trend: "text-[hsl(199,89%,40%)] bg-[hsl(199,89%,90%)]",
-  },
-  green: {
-    card: "bg-[hsl(160,84%,95%)] border-[hsl(160,70%,85%)]",
-    icon: "bg-[hsl(160,84%,85%)] text-[hsl(160,84%,30%)]",
-    trend: "text-[hsl(160,84%,35%)] bg-[hsl(160,84%,90%)]",
-  },
-  orange: {
-    card: "bg-[hsl(38,92%,95%)] border-[hsl(38,80%,85%)]",
-    icon: "bg-[hsl(38,92%,80%)] text-[hsl(38,92%,30%)]",
-    trend: "text-[hsl(38,92%,35%)] bg-[hsl(38,92%,88%)]",
-  },
-  red: {
-    card: "bg-[hsl(0,84%,95%)] border-[hsl(0,70%,85%)]",
-    icon: "bg-[hsl(0,84%,85%)] text-[hsl(0,84%,40%)]",
-    trend: "text-[hsl(0,84%,45%)] bg-[hsl(0,84%,90%)]",
-  },
+  default: "bg-card",
+  primary: "bg-primary/10 border-primary/20",
+  success: "bg-success/10 border-success/20",
+  warning: "bg-warning/10 border-warning/20",
+  info: "bg-info/10 border-info/20",
 };
 
-export function StatCard({ 
-  title, 
-  value, 
-  icon: Icon, 
-  trend, 
-  variant = "green",
-  showProgress = false,
-  progressValue = 0
-}: StatCardProps) {
-  const styles = variantStyles[variant];
-  
+const iconStyles = {
+  default: "bg-muted text-muted-foreground",
+  primary: "bg-primary text-primary-foreground",
+  success: "bg-success text-success-foreground",
+  warning: "bg-warning text-warning-foreground",
+  info: "bg-info text-info-foreground",
+};
+
+export function StatCard({ title, value, icon: Icon, trend, variant = "default" }: StatCardProps) {
   return (
-    <Card className={cn("border transition-all hover:shadow-lg rounded-2xl", styles.card)}>
-      <CardContent className="p-5">
-        <div className="flex items-start justify-between mb-4">
-          <div className={cn("p-3 rounded-xl", styles.icon)}>
-            <Icon className="h-5 w-5" />
+    <Card className={cn("border transition-all hover:shadow-md", variantStyles[variant])}>
+      <CardContent className="p-6">
+        <div className="flex items-center justify-between">
+          <div className="space-y-1">
+            <p className="text-sm font-medium text-muted-foreground">{title}</p>
+            <p className="text-3xl font-bold tracking-tight">{value}</p>
+            {trend && (
+              <p className={cn(
+                "text-sm font-medium",
+                trend.isPositive ? "text-success" : "text-destructive"
+              )}>
+                {trend.isPositive ? "+" : ""}{trend.value}% from last month
+              </p>
+            )}
           </div>
-          <button className="p-1.5 rounded-lg hover:bg-black/5 transition-colors">
-            <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
-          </button>
+          <div className={cn("p-3 rounded-xl", iconStyles[variant])}>
+            <Icon className="h-6 w-6" />
+          </div>
         </div>
-        
-        <p className="text-sm font-medium text-muted-foreground mb-1">{title}</p>
-        <p className="text-2xl font-bold tracking-tight text-foreground mb-2">{value}</p>
-        
-        {showProgress && (
-          <div className="mb-2">
-            <Progress 
-              value={progressValue} 
-              className="h-2 bg-black/10"
-            />
-          </div>
-        )}
-        
-        {trend && (
-          <div className="flex items-center gap-2">
-            <span className={cn(
-              "text-xs font-semibold px-2 py-0.5 rounded-full",
-              styles.trend
-            )}>
-              {trend.isPositive ? "+" : ""}{trend.value}%
-            </span>
-            <span className="text-xs text-muted-foreground">Since Last month</span>
-          </div>
-        )}
       </CardContent>
     </Card>
   );

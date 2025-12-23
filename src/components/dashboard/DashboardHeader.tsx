@@ -1,6 +1,12 @@
-import { Bell, Search, Menu, Mail, Plus } from "lucide-react";
+import { Bell, Search, Settings, Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface DashboardHeaderProps {
   onMenuClick?: () => void;
@@ -8,56 +14,49 @@ interface DashboardHeaderProps {
 
 export function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
   return (
-    <header className="sticky top-0 z-40 bg-background">
+    <header className="sticky top-0 z-40 bg-card border-b">
       <div className="flex h-16 items-center justify-between px-4 md:px-6 gap-4">
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" className="md:hidden shrink-0" onClick={onMenuClick}>
-            <Menu className="h-5 w-5" />
-          </Button>
-          
-          {/* Greeting */}
-          <div className="hidden sm:block">
-            <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
-              <span className="text-2xl">☀️</span>
-              Hello Evano
-              <span className="text-2xl">👋</span>
-            </h2>
-          </div>
-        </div>
+        <Button variant="ghost" size="icon" className="md:hidden shrink-0" onClick={onMenuClick}>
+          <Menu className="h-5 w-5" />
+        </Button>
 
-        {/* Search Bar */}
-        <div className="flex-1 flex justify-center max-w-md mx-auto">
+        {/* Search Bar - Centered */}
+        <div className="flex-1 flex justify-center max-w-xl mx-auto">
           <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input 
-              placeholder="Search here" 
-              className="w-full pl-10 bg-card border-border rounded-xl"
+              placeholder="Tìm kiếm kho..." 
+              className="w-full pl-10 bg-muted/50 border-border"
             />
           </div>
         </div>
         
         {/* Right Section */}
         <div className="flex items-center gap-2 shrink-0">
-          <Button variant="ghost" size="icon" className="relative text-muted-foreground hover:text-foreground">
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707" />
-            </svg>
+          <Button variant="ghost" size="icon" className="relative">
+            <Bell className="h-5 w-5 text-muted-foreground" />
           </Button>
           
-          <Button variant="ghost" size="icon" className="relative text-muted-foreground hover:text-foreground">
-            <Bell className="h-5 w-5" />
-            <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-destructive" />
-          </Button>
-          
-          <Button variant="ghost" size="icon" className="relative text-muted-foreground hover:text-foreground">
-            <Mail className="h-5 w-5" />
-            <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-destructive" />
+          <Button variant="ghost" size="sm" className="gap-2 hidden sm:flex">
+            <Settings className="h-4 w-4" />
+            <span>Cài đặt</span>
           </Button>
 
-          <Button className="gap-2 bg-primary hover:bg-primary-light text-primary-foreground rounded-xl ml-2">
-            <span>Add New Product</span>
-            <Plus className="h-4 w-4" />
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="gap-2 pl-2 pr-1">
+                <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-semibold text-sm">
+                  AD
+                </div>
+                <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48 bg-popover">
+              <DropdownMenuItem>Hồ sơ cá nhân</DropdownMenuItem>
+              <DropdownMenuItem>Cài đặt tài khoản</DropdownMenuItem>
+              <DropdownMenuItem className="text-destructive">Đăng xuất</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>
