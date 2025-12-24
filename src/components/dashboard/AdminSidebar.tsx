@@ -10,7 +10,7 @@ import {
   Settings,
   ChevronLeft,
   X,
-  LogOut
+  MoreHorizontal
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -148,15 +148,15 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
               </AvatarFallback>
             </Avatar>
             {!collapsed && (
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium truncate">Admin User</p>
-                <p className="text-xs text-muted-foreground truncate">Quản trị viên</p>
-              </div>
-            )}
-            {!collapsed && (
-              <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0">
-                <LogOut className="h-4 w-4" />
-              </Button>
+              <>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium truncate">Admin User</p>
+                  <p className="text-xs text-muted-foreground truncate">GenHub Admin</p>
+                </div>
+                <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0">
+                  <MoreHorizontal className="h-4 w-4" />
+                </Button>
+              </>
             )}
           </div>
         </div>
