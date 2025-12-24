@@ -77,9 +77,16 @@ export default {
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "var(--radius-lg)",    /* 24px - Cards, modals, large containers */
+        md: "var(--radius-md)",    /* 16px - Medium elements */
+        DEFAULT: "var(--radius)",  /* 12px - Default/buttons */
+        sm: "var(--radius-sm)",    /* 8px - Small elements, tags */
+        xl: "var(--radius-xl)",    /* 32px - Extra large */
+        full: "var(--radius-full)", /* Pill shape */
+      },
+      spacing: {
+        'sidebar': 'var(--sidebar-width)',
+        'sidebar-collapsed': 'var(--sidebar-width-collapsed)',
       },
       keyframes: {
         "accordion-down": {

@@ -31,7 +31,7 @@ const iconStyles = {
 
 export function StatCard({ title, value, icon: Icon, trend, variant = "default" }: StatCardProps) {
   return (
-    <Card className={cn("border transition-all hover:shadow-md", variantStyles[variant])}>
+    <Card className={cn("border transition-all hover:shadow-md card-interactive", variantStyles[variant])}>
       <CardContent className="p-6">
         <div className="flex items-center justify-between">
           <div className="space-y-1">
@@ -42,11 +42,11 @@ export function StatCard({ title, value, icon: Icon, trend, variant = "default" 
                 "text-sm font-medium",
                 trend.isPositive ? "text-success" : "text-destructive"
               )}>
-                {trend.isPositive ? "+" : ""}{trend.value}% from last month
+                {trend.isPositive ? "+" : ""}{trend.value}% từ tháng trước
               </p>
             )}
           </div>
-          <div className={cn("p-3 rounded-xl", iconStyles[variant])}>
+          <div className={cn("stat-icon-container", iconStyles[variant])}>
             <Icon className="h-6 w-6" />
           </div>
         </div>

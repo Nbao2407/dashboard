@@ -17,19 +17,19 @@ const RevenueReport = () => {
       <div className="flex-1 flex flex-col min-w-0">
         <DashboardHeader onMenuClick={() => setSidebarOpen(true)} />
         
-        <main className="flex-1 p-4 md:p-6 space-y-6 overflow-auto">
+        <main className="page-container">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <span>Dashboard Admin</span>
             <span>/</span>
             <span className="text-foreground font-medium">Báo cáo Doanh thu</span>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="section-header">
             <div>
               <h1 className="text-2xl md:text-3xl font-bold">Báo cáo Doanh thu</h1>
               <p className="text-muted-foreground mt-1">Thống kê doanh thu và hiệu suất kinh doanh</p>
             </div>
-            <Button className="gap-2">
+            <Button className="gap-2 rounded-md">
               <Download className="h-4 w-4" />
               Xuất báo cáo
             </Button>
@@ -81,26 +81,32 @@ const RevenueReport = () => {
                 <CardTitle>Thống kê chi tiết</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
+                <div className="card-section flex items-center justify-between">
                   <div>
                     <p className="text-sm text-muted-foreground">Tổng doanh thu năm</p>
                     <p className="text-2xl font-bold">28.5 tỷ VND</p>
                   </div>
-                  <TrendingUp className="h-8 w-8 text-green-500" />
+                  <div className="stat-icon-container bg-success/10">
+                    <TrendingUp className="h-6 w-6 text-success" />
+                  </div>
                 </div>
-                <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
+                <div className="card-section flex items-center justify-between">
                   <div>
                     <p className="text-sm text-muted-foreground">Chi phí vận hành</p>
                     <p className="text-2xl font-bold">4.2 tỷ VND</p>
                   </div>
-                  <TrendingDown className="h-8 w-8 text-red-500" />
+                  <div className="stat-icon-container bg-destructive/10">
+                    <TrendingDown className="h-6 w-6 text-destructive" />
+                  </div>
                 </div>
-                <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
+                <div className="card-section flex items-center justify-between">
                   <div>
                     <p className="text-sm text-muted-foreground">Lợi nhuận ròng</p>
                     <p className="text-2xl font-bold">24.3 tỷ VND</p>
                   </div>
-                  <DollarSign className="h-8 w-8 text-primary" />
+                  <div className="stat-icon-container bg-primary/10">
+                    <DollarSign className="h-6 w-6 text-primary" />
+                  </div>
                 </div>
               </CardContent>
             </Card>

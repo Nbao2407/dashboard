@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Deep Teal – Slate Design System */
+/* GenHub Design System - Consistent & Scalable */
 
 @layer base {
   :root {
+    /* Core Colors */
     --background: 210 40% 98%;
     --foreground: 215 28% 17%;
 
@@ -45,7 +46,25 @@
     --input: 214 32% 91%;
     --ring: 173 77% 26%;
 
-    --radius: 0.5rem;
+    /* Corner Radius System - Consistent across all components */
+    --radius: 0.75rem;           /* 12px - Default/Small */
+    --radius-sm: 0.5rem;         /* 8px - Smallest */
+    --radius-md: 1rem;           /* 16px - Medium */
+    --radius-lg: 1.5rem;         /* 24px - Large */
+    --radius-xl: 2rem;           /* 32px - Extra Large */
+    --radius-full: 9999px;       /* Full/Pill */
+
+    /* Spacing System - 8px base grid */
+    --spacing-xs: 0.25rem;       /* 4px */
+    --spacing-sm: 0.5rem;        /* 8px */
+    --spacing-md: 1rem;          /* 16px */
+    --spacing-lg: 1.5rem;        /* 24px */
+    --spacing-xl: 2rem;          /* 32px */
+    --spacing-2xl: 3rem;         /* 48px */
+
+    /* Sidebar dimensions */
+    --sidebar-width: 18rem;      /* 288px */
+    --sidebar-width-collapsed: 4.5rem; /* 72px */
 
     --sidebar-background: 210 40% 96%;
     --sidebar-foreground: 215 25% 27%;
@@ -58,13 +77,13 @@
   }
 
   .dark {
-    --background: 215 28% 17%;
+    --background: 215 28% 12%;
     --foreground: 210 40% 98%;
 
-    --card: 215 25% 22%;
+    --card: 215 25% 16%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 215 25% 22%;
+    --popover: 215 25% 16%;
     --popover-foreground: 210 40% 98%;
 
     --primary: 173 58% 40%;
@@ -72,16 +91,16 @@
     --primary-light: 173 58% 50%;
     --primary-dark: 173 77% 26%;
 
-    --secondary: 215 25% 27%;
+    --secondary: 215 25% 20%;
     --secondary-foreground: 210 40% 96%;
 
-    --muted: 215 25% 27%;
+    --muted: 215 25% 20%;
     --muted-foreground: 215 16% 65%;
 
     --accent: 199 89% 48%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62% 30%;
+    --destructive: 0 62% 40%;
     --destructive-foreground: 210 40% 98%;
 
     --success: 160 84% 39%;
@@ -93,17 +112,17 @@
     --info: 199 89% 48%;
     --info-foreground: 0 0% 100%;
 
-    --border: 215 25% 27%;
-    --input: 215 25% 27%;
+    --border: 215 20% 25%;
+    --input: 215 20% 25%;
     --ring: 173 58% 40%;
 
-    --sidebar-background: 215 28% 17%;
+    --sidebar-background: 215 28% 12%;
     --sidebar-foreground: 210 40% 96%;
     --sidebar-primary: 173 58% 40%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 215 25% 27%;
+    --sidebar-accent: 215 25% 20%;
     --sidebar-accent-foreground: 210 40% 96%;
-    --sidebar-border: 215 25% 27%;
+    --sidebar-border: 215 20% 25%;
     --sidebar-ring: 173 58% 40%;
   }
 }
@@ -119,7 +138,32 @@
 }
 
 @layer utilities {
+  /* Glass effect utility */
   .glass-card {
-    @apply bg-card/80 backdrop-blur-sm border border-border/50 shadow-sm;
+    @apply bg-card/80 backdrop-blur-sm border border-border/50 shadow-sm rounded-lg;
+  }
+
+  /* Consistent card styling */
+  .card-interactive {
+    @apply transition-all duration-200 hover:shadow-md hover:border-primary/20;
+  }
+
+  /* Container utilities */
+  .page-container {
+    @apply flex-1 p-4 md:p-6 space-y-6 overflow-auto;
+  }
+
+  .section-header {
+    @apply flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4;
+  }
+
+  /* Stats card consistent inner element */
+  .stat-icon-container {
+    @apply p-3 rounded-lg;
+  }
+
+  /* Consistent inner card sections */
+  .card-section {
+    @apply p-4 bg-muted/50 rounded-lg;
   }
 }
