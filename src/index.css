@@ -159,12 +159,12 @@
 
   /* Stats card consistent inner element */
   .stat-icon-container {
-    @apply p-3 rounded-DEFAULT;
+    @apply p-3 rounded;
   }
 
   /* Consistent inner card sections */
   .card-section {
-    @apply p-4 bg-muted/50 rounded-DEFAULT;
+    @apply p-4 bg-muted/50 rounded;
   }
 
   /* ========== TYPOGRAPHY SYSTEM ========== */

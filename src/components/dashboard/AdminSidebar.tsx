@@ -53,7 +53,7 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
       to={item.url}
       end={item.url === "/admin"}
       className={cn(
-        "flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-muted-foreground hover:bg-muted hover:text-foreground transition-all",
+        "flex items-center gap-3 px-3 py-2.5 rounded text-muted-foreground hover:bg-muted hover:text-foreground transition-all",
         collapsed && "justify-center px-2"
       )}
       activeClassName="bg-primary/10 text-primary font-medium hover:bg-primary/10 hover:text-primary"
@@ -83,7 +83,7 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
           collapsed ? "justify-center px-2" : "justify-between px-4"
         )}>
           <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-DEFAULT bg-primary flex items-center justify-center shrink-0">
+            <div className="h-8 w-8 rounded bg-primary flex items-center justify-center shrink-0">
               <Package className="h-4 w-4 text-primary-foreground" />
             </div>
             {!collapsed && (
