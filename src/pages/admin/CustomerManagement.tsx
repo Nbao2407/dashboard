@@ -29,9 +29,9 @@ const CustomerManagement = () => {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "active":
-        return <Badge className="bg-green-500/10 text-green-600 hover:bg-green-500/20">Hoạt động</Badge>;
+        return <Badge variant="success">Hoạt động</Badge>;
       case "blocked":
-        return <Badge className="bg-red-500/10 text-red-600 hover:bg-red-500/20">Đã khóa</Badge>;
+        return <Badge variant="destructive">Đã khóa</Badge>;
       default:
         return <Badge variant="secondary">Không xác định</Badge>;
     }
@@ -44,22 +44,22 @@ const CustomerManagement = () => {
       <div className="flex-1 flex flex-col min-w-0">
         <DashboardHeader onMenuClick={() => setSidebarOpen(true)} />
         
-        <main className="flex-1 p-4 md:p-6 space-y-6 overflow-auto">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+        <main className="page-container">
+          <div className="breadcrumb">
             <span>Dashboard Admin</span>
             <span>/</span>
-            <span className="text-foreground font-medium">Quản lý Khách hàng</span>
+            <span className="breadcrumb-current">Quản lý Khách hàng</span>
           </div>
 
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold">Quản lý Khách hàng</h1>
-            <p className="text-muted-foreground mt-1">Danh sách và thông tin khách hàng</p>
+            <h1 className="text-heading-xl">Quản lý Khách hàng</h1>
+            <p className="text-body text-muted mt-1">Danh sách và thông tin khách hàng</p>
           </div>
 
           <Card>
             <CardHeader>
               <div className="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
-                <CardTitle>Danh sách Khách hàng</CardTitle>
+                <CardTitle className="text-heading">Danh sách Khách hàng</CardTitle>
                 <div className="relative w-full sm:w-64">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input

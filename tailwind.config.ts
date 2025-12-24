@@ -16,6 +16,26 @@ export default {
       fontFamily: {
         geist: ['Geist', 'system-ui', 'sans-serif'],
         sans: ['Geist', 'system-ui', 'sans-serif'],
+        mono: ['Geist Mono', 'ui-monospace', 'monospace'],
+      },
+      fontSize: {
+        // Display sizes
+        'display-lg': ['3.75rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],  // 60px
+        'display': ['3rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],        // 48px
+        'display-sm': ['2.25rem', { lineHeight: '1.2', letterSpacing: '-0.01em' }],  // 36px
+        // Heading sizes
+        'heading-xl': ['1.875rem', { lineHeight: '1.2', letterSpacing: '-0.01em' }], // 30px
+        'heading-lg': ['1.5rem', { lineHeight: '1.3', letterSpacing: '-0.01em' }],   // 24px
+        'heading': ['1.25rem', { lineHeight: '1.4' }],                                // 20px
+        'heading-sm': ['1.125rem', { lineHeight: '1.4' }],                            // 18px
+        // Body sizes
+        'body-lg': ['1.125rem', { lineHeight: '1.6' }],   // 18px
+        'body': ['1rem', { lineHeight: '1.6' }],          // 16px
+        'body-sm': ['0.875rem', { lineHeight: '1.5' }],   // 14px
+        // Small sizes
+        'label': ['0.875rem', { lineHeight: '1.4', fontWeight: '500' }],  // 14px
+        'caption': ['0.75rem', { lineHeight: '1.4' }],    // 12px
+        'overline': ['0.75rem', { lineHeight: '1.4', letterSpacing: '0.05em' }], // 12px
       },
       colors: {
         border: "hsl(var(--border))",
