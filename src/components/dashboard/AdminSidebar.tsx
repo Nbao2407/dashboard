@@ -53,7 +53,7 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
       to={item.url}
       end={item.url === "/admin"}
       className={cn(
-        "flex items-center gap-3 px-3 py-2.5 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors",
+        "flex items-center gap-3 px-3 py-2.5 rounded-DEFAULT text-muted-foreground hover:bg-muted hover:text-foreground transition-all",
         collapsed && "justify-center px-2"
       )}
       activeClassName="bg-primary/10 text-primary font-medium hover:bg-primary/10 hover:text-primary"
@@ -74,7 +74,7 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
 
       <aside className={cn(
         "fixed md:sticky top-0 left-0 z-50 h-screen bg-card border-r flex flex-col transition-all duration-300",
-        collapsed ? "w-16" : "w-64",
+        collapsed ? "w-sidebar-collapsed" : "w-sidebar",
         isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
       )}>
         {/* Header */}
@@ -83,7 +83,7 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
           collapsed ? "justify-center px-2" : "justify-between px-4"
         )}>
           <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center shrink-0">
+            <div className="h-8 w-8 rounded-DEFAULT bg-primary flex items-center justify-center shrink-0">
               <Package className="h-4 w-4 text-primary-foreground" />
             </div>
             {!collapsed && (
