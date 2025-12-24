@@ -56,8 +56,8 @@ const StaffReports = () => {
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold">Báo cáo</h1>
-              <p className="text-muted-foreground mt-1">Báo cáo hàng ngày và sự cố</p>
+              <h1 className="text-heading-xl">Báo cáo</h1>
+              <p className="text-body text-muted-foreground mt-1">Báo cáo hàng ngày và sự cố</p>
             </div>
             <div className="flex gap-2">
               <Button variant="outline" className="gap-2">
@@ -86,7 +86,7 @@ const StaffReports = () => {
             <TabsContent value="daily" className="mt-4">
               <Card>
                 <CardHeader>
-                  <CardTitle>Báo cáo hàng ngày</CardTitle>
+                  <CardTitle className="text-heading">Báo cáo hàng ngày</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Table>
@@ -124,7 +124,7 @@ const StaffReports = () => {
             <TabsContent value="incident" className="mt-4">
               <Card>
                 <CardHeader>
-                  <CardTitle>Báo cáo sự cố</CardTitle>
+                  <CardTitle className="text-heading">Báo cáo sự cố</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Table>

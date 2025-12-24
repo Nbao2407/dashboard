@@ -53,8 +53,8 @@ const Maintenance = () => {
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold">Bảo trì kho</h1>
-              <p className="text-muted-foreground mt-1">Lên lịch và theo dõi công việc bảo trì</p>
+              <h1 className="text-heading-xl">Bảo trì kho</h1>
+              <p className="text-body text-muted-foreground mt-1">Lên lịch và theo dõi công việc bảo trì</p>
             </div>
             <Button className="gap-2">
               <Plus className="h-4 w-4" />
@@ -100,7 +100,7 @@ const Maintenance = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle>Lịch sử bảo trì</CardTitle>
+              <CardTitle className="text-heading">Lịch sử bảo trì</CardTitle>
             </CardHeader>
             <CardContent>
               <Table>

@@ -66,8 +66,8 @@ const StaffManagement = () => {
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold">Quản lý Nhân viên</h1>
-              <p className="text-muted-foreground mt-1">Quản lý nhân viên và phân quyền</p>
+              <h1 className="text-heading-xl">Quản lý Nhân viên</h1>
+              <p className="text-body text-muted-foreground mt-1">Quản lý nhân viên và phân quyền</p>
             </div>
             <Button className="gap-2">
               <Plus className="h-4 w-4" />
@@ -78,7 +78,7 @@ const StaffManagement = () => {
           <Card>
             <CardHeader>
               <div className="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
-                <CardTitle>Danh sách Nhân viên</CardTitle>
+                <CardTitle className="text-heading">Danh sách Nhân viên</CardTitle>
                 <div className="relative w-full sm:w-64">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input

@@ -26,8 +26,8 @@ const SystemSettings = () => {
           </div>
 
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold">Cài đặt Hệ thống</h1>
-            <p className="text-muted-foreground mt-1">Cấu hình và tùy chỉnh hệ thống</p>
+            <h1 className="text-heading-xl">Cài đặt Hệ thống</h1>
+            <p className="text-body text-muted-foreground mt-1">Cấu hình và tùy chỉnh hệ thống</p>
           </div>
 
           <div className="grid gap-6">
@@ -35,7 +35,7 @@ const SystemSettings = () => {
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <Globe className="h-5 w-5 text-primary" />
-                  <CardTitle>Thông tin chung</CardTitle>
+                  <CardTitle className="text-heading">Thông tin chung</CardTitle>
                 </div>
                 <CardDescription>Cài đặt thông tin cơ bản của hệ thống</CardDescription>
               </CardHeader>
@@ -59,7 +59,7 @@ const SystemSettings = () => {
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <Bell className="h-5 w-5 text-primary" />
-                  <CardTitle>Thông báo</CardTitle>
+                  <CardTitle className="text-heading">Thông báo</CardTitle>
                 </div>
                 <CardDescription>Cài đặt thông báo hệ thống</CardDescription>
               </CardHeader>
@@ -92,7 +92,7 @@ const SystemSettings = () => {
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <Shield className="h-5 w-5 text-primary" />
-                  <CardTitle>Bảo mật</CardTitle>
+                  <CardTitle className="text-heading">Bảo mật</CardTitle>
                 </div>
                 <CardDescription>Cài đặt bảo mật hệ thống</CardDescription>
               </CardHeader>

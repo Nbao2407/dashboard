@@ -51,14 +51,14 @@ const StaffBookings = () => {
           </div>
 
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold">Quản lý Đơn thuê</h1>
-            <p className="text-muted-foreground mt-1">Xử lý và bàn giao đơn thuê kho</p>
+            <h1 className="text-heading-xl">Quản lý Đơn thuê</h1>
+            <p className="text-body text-muted-foreground mt-1">Xử lý và bàn giao đơn thuê kho</p>
           </div>
 
           <Card>
             <CardHeader>
               <div className="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
-                <CardTitle>Danh sách Đơn thuê</CardTitle>
+                <CardTitle className="text-heading">Danh sách Đơn thuê</CardTitle>
                 <div className="relative w-full sm:w-64">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input

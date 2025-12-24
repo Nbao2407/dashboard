@@ -39,8 +39,8 @@ const CheckInOut = () => {
           </div>
 
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold">Check-in/Check-out</h1>
-            <p className="text-muted-foreground mt-1">Quét QR và ghi nhận ra/vào kho</p>
+            <h1 className="text-heading-xl">Check-in/Check-out</h1>
+            <p className="text-body text-muted-foreground mt-1">Quét QR và ghi nhận ra/vào kho</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -57,7 +57,7 @@ const CheckInOut = () => {
 
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="text-heading flex items-center gap-2">
                   <Clock className="h-5 w-5" />
                   Thống kê hôm nay
                 </CardTitle>
@@ -79,7 +79,7 @@ const CheckInOut = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle>Lịch sử ra/vào hôm nay</CardTitle>
+              <CardTitle className="text-heading">Lịch sử ra/vào hôm nay</CardTitle>
             </CardHeader>
             <CardContent>
               <Table>
