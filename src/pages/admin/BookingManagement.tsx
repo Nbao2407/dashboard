@@ -190,8 +190,8 @@ const BookingManagement = () => {
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold">Quản lý Đơn thuê</h1>
-              <p className="text-muted-foreground mt-1">Duyệt và quản lý các đơn thuê kho</p>
+              <h1 className="text-heading-xl">Quản lý Đơn thuê</h1>
+              <p className="text-body text-muted-foreground mt-1">Duyệt và quản lý các đơn thuê kho</p>
             </div>
             <DataExport 
               data={filteredBookings} 
@@ -241,7 +241,7 @@ const BookingManagement = () => {
             <CardHeader className="pb-4">
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between">
-                  <CardTitle>Danh sách Đơn thuê ({filteredBookings.length})</CardTitle>
+                  <CardTitle className="text-heading">Danh sách Đơn thuê ({filteredBookings.length})</CardTitle>
                 </div>
                 <AdvancedFilters
                   config={filterConfig}

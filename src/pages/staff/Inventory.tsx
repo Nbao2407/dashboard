@@ -54,8 +54,8 @@ const Inventory = () => {
           </div>
 
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold">Kiểm kê hàng hóa</h1>
-            <p className="text-muted-foreground mt-1">Kiểm tra và báo cáo tình trạng hàng tồn</p>
+            <h1 className="text-heading-xl">Kiểm kê hàng hóa</h1>
+            <p className="text-body text-muted-foreground mt-1">Kiểm tra và báo cáo tình trạng hàng tồn</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -97,7 +97,7 @@ const Inventory = () => {
           <Card>
             <CardHeader>
               <div className="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
-                <CardTitle>Danh sách hàng hóa</CardTitle>
+                <CardTitle className="text-heading">Danh sách hàng hóa</CardTitle>
                 <div className="flex gap-2">
                   <div className="relative w-full sm:w-64">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />

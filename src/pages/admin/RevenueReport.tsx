@@ -26,8 +26,8 @@ const RevenueReport = () => {
 
           <div className="section-header">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold">Báo cáo Doanh thu</h1>
-              <p className="text-muted-foreground mt-1">Thống kê doanh thu và hiệu suất kinh doanh</p>
+              <h1 className="text-heading-xl">Báo cáo Doanh thu</h1>
+              <p className="text-body text-muted-foreground mt-1">Thống kê doanh thu và hiệu suất kinh doanh</p>
             </div>
             <Button className="gap-2 rounded-md">
               <Download className="h-4 w-4" />
@@ -69,7 +69,7 @@ const RevenueReport = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle>Doanh thu theo tháng</CardTitle>
+                <CardTitle className="text-heading">Doanh thu theo tháng</CardTitle>
               </CardHeader>
               <CardContent>
                 <WarehouseChart />
@@ -78,7 +78,7 @@ const RevenueReport = () => {
             
             <Card>
               <CardHeader>
-                <CardTitle>Thống kê chi tiết</CardTitle>
+                <CardTitle className="text-heading">Thống kê chi tiết</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="card-section flex items-center justify-between">

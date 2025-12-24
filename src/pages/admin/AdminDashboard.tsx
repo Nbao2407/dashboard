@@ -25,8 +25,8 @@ const AdminDashboard = () => {
           </div>
 
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold">Tổng quan Hệ thống</h1>
-            <p className="text-muted-foreground mt-1">Quản lý và giám sát toàn bộ hệ thống kho</p>
+            <h1 className="text-heading-xl">Tổng quan Hệ thống</h1>
+            <p className="text-body text-muted-foreground mt-1">Quản lý và giám sát toàn bộ hệ thống kho</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

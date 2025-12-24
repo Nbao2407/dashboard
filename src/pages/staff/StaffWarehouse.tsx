@@ -40,8 +40,8 @@ const StaffWarehouse = () => {
           </div>
 
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold">Kho được giao</h1>
-            <p className="text-muted-foreground mt-1">Thông tin và quản lý kho bạn được phân công</p>
+            <h1 className="text-heading-xl">Kho được giao</h1>
+            <p className="text-body text-muted-foreground mt-1">Thông tin và quản lý kho bạn được phân công</p>
           </div>
 
           <div className="grid gap-6">
@@ -49,7 +49,7 @@ const StaffWarehouse = () => {
               <Card key={wh.id}>
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <CardTitle>{wh.name}</CardTitle>
+                    <CardTitle className="text-heading">{wh.name}</CardTitle>
                     {getStatusBadge(wh.status)}
                   </div>
                 </CardHeader>
