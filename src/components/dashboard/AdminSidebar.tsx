@@ -58,14 +58,27 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
               </div>
             )}
           </div>
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="md:hidden"
-            onClick={onClose}
-          >
-            <X className="h-5 w-5" />
-          </Button>
+          <div className="flex items-center gap-1">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hidden md:flex"
+              onClick={() => setCollapsed(!collapsed)}
+            >
+              <ChevronLeft className={cn(
+                "h-4 w-4 transition-transform",
+                collapsed && "rotate-180"
+              )} />
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="md:hidden"
+              onClick={onClose}
+            >
+              <X className="h-5 w-5" />
+            </Button>
+          </div>
         </div>
 
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
@@ -86,23 +99,6 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
           ))}
         </nav>
 
-        <div className="p-3 border-t">
-          <Button
-            variant="ghost"
-            size="sm"
-            className={cn(
-              "w-full hidden md:flex",
-              collapsed ? "justify-center" : "justify-start"
-            )}
-            onClick={() => setCollapsed(!collapsed)}
-          >
-            <ChevronLeft className={cn(
-              "h-4 w-4 transition-transform",
-              collapsed && "rotate-180"
-            )} />
-            {!collapsed && <span className="ml-2">Thu gọn</span>}
-          </Button>
-        </div>
       </aside>
     </>
   );
