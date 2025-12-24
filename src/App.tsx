@@ -1,7 +1,6 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
@@ -29,37 +28,35 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            
-            {/* Admin Routes */}
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/admin/warehouses" element={<WarehouseManagement />} />
-            <Route path="/admin/bookings" element={<BookingManagement />} />
-            <Route path="/admin/customers" element={<CustomerManagement />} />
-            <Route path="/admin/staff" element={<StaffManagement />} />
-            <Route path="/admin/revenue" element={<RevenueReport />} />
-            <Route path="/admin/settings" element={<SystemSettings />} />
-            
-            {/* Staff Routes */}
-            <Route path="/staff" element={<StaffDashboard />} />
-            <Route path="/staff/warehouse" element={<StaffWarehouse />} />
-            <Route path="/staff/bookings" element={<StaffBookings />} />
-            <Route path="/staff/checkin" element={<CheckInOut />} />
-            <Route path="/staff/inventory" element={<Inventory />} />
-            <Route path="/staff/maintenance" element={<Maintenance />} />
-            <Route path="/staff/reports" element={<StaffReports />} />
-            
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </ThemeProvider>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/warehouses" element={<WarehouseManagement />} />
+          <Route path="/admin/bookings" element={<BookingManagement />} />
+          <Route path="/admin/customers" element={<CustomerManagement />} />
+          <Route path="/admin/staff" element={<StaffManagement />} />
+          <Route path="/admin/revenue" element={<RevenueReport />} />
+          <Route path="/admin/settings" element={<SystemSettings />} />
+          
+          {/* Staff Routes */}
+          <Route path="/staff" element={<StaffDashboard />} />
+          <Route path="/staff/warehouse" element={<StaffWarehouse />} />
+          <Route path="/staff/bookings" element={<StaffBookings />} />
+          <Route path="/staff/checkin" element={<CheckInOut />} />
+          <Route path="/staff/inventory" element={<Inventory />} />
+          <Route path="/staff/maintenance" element={<Maintenance />} />
+          <Route path="/staff/reports" element={<StaffReports />} />
+          
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
   </QueryClientProvider>
 );
 

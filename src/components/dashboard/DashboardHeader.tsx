@@ -1,7 +1,12 @@
-import { Bell, Search, Menu } from "lucide-react";
+import { Bell, Search, Settings, Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface DashboardHeaderProps {
   onMenuClick?: () => void;
@@ -25,7 +30,6 @@ export function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
 
         {/* Right Section */}
         <div className="flex items-center gap-2 shrink-0">
-          <ThemeToggle />
           <Button variant="ghost" size="icon" className="relative">
             <Bell className="h-5 w-5 text-muted-foreground" />
           </Button>
