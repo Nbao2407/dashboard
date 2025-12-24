@@ -1,81 +1,73 @@
-import { useState } from "react";
-import { Package, Truck, AlertTriangle, TrendingUp } from "lucide-react";
-import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
-import { DashboardSidebar } from "@/components/dashboard/DashboardSidebar";
-import { StatCard } from "@/components/dashboard/StatCard";
-import { InventoryTable } from "@/components/dashboard/InventoryTable";
-import { RecentActivity } from "@/components/dashboard/RecentActivity";
-import { WarehouseChart } from "@/components/dashboard/WarehouseChart";
+import { Link } from "react-router-dom";
+import { Package, Shield, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Index = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
   return (
-    <div className="min-h-screen flex w-full bg-background">
-      <DashboardSidebar 
-        isOpen={sidebarOpen} 
-        onClose={() => setSidebarOpen(false)} 
-      />
-      
-      <div className="flex-1 flex flex-col min-w-0">
-        <DashboardHeader onMenuClick={() => setSidebarOpen(true)} />
-        
-        <main className="flex-1 p-4 md:p-6 space-y-6 overflow-auto">
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span className="text-foreground font-medium">Trang chủ</span>
-          </div>
-
-          {/* Page Title */}
-          <div>
-            <h1 className="text-2xl md:text-3xl font-bold">Tổng quan</h1>
-            <p className="text-muted-foreground mt-1">Theo dõi hoạt động kho hàng của bạn</p>
-          </div>
-
-          {/* Stats Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <StatCard
-              title="Tổng sản phẩm"
-              value="12,847"
-              icon={Package}
-              trend={{ value: 12, isPositive: true }}
-              variant="primary"
-            />
-            <StatCard
-              title="Đơn hàng chờ"
-              value="284"
-              icon={TrendingUp}
-              trend={{ value: 8, isPositive: true }}
-              variant="info"
-            />
-            <StatCard
-              title="Xuất kho hôm nay"
-              value="47"
-              icon={Truck}
-              trend={{ value: 4, isPositive: false }}
-              variant="success"
-            />
-            <StatCard
-              title="Sắp hết hàng"
-              value="12"
-              icon={AlertTriangle}
-              variant="warning"
-            />
-          </div>
-
-          {/* Charts and Activity */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2">
-              <WarehouseChart />
-            </div>
-            <div>
-              <RecentActivity />
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <div className="max-w-4xl w-full space-y-8">
+        <div className="text-center space-y-4">
+          <div className="flex justify-center">
+            <div className="h-16 w-16 rounded-2xl bg-primary flex items-center justify-center">
+              <Package className="h-8 w-8 text-primary-foreground" />
             </div>
           </div>
+          <h1 className="text-4xl font-bold">GenHub</h1>
+          <p className="text-muted-foreground text-lg">Hệ thống Quản lý Kho Hàng</p>
+        </div>
 
-          {/* Inventory Table */}
-          <InventoryTable />
-        </main>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card className="hover:border-primary transition-colors">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Shield className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <CardTitle>Admin Dashboard</CardTitle>
+                  <CardDescription>Quản lý toàn bộ hệ thống</CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <ul className="text-sm text-muted-foreground space-y-2">
+                <li>• Quản lý Kho</li>
+                <li>• Quản lý Đơn thuê</li>
+                <li>• Quản lý Khách hàng & Nhân viên</li>
+                <li>• Báo cáo Doanh thu</li>
+              </ul>
+              <Button asChild className="w-full">
+                <Link to="/admin">Vào Dashboard Admin</Link>
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="hover:border-primary transition-colors">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Users className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <CardTitle>Staff Dashboard</CardTitle>
+                  <CardDescription>Dành cho nhân viên</CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <ul className="text-sm text-muted-foreground space-y-2">
+                <li>• Quản lý Kho được giao</li>
+                <li>• Check-in/Check-out</li>
+                <li>• Kiểm kê hàng hóa</li>
+                <li>• Bảo trì & Báo cáo</li>
+              </ul>
+              <Button asChild variant="outline" className="w-full">
+                <Link to="/staff">Vào Dashboard Nhân viên</Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );
