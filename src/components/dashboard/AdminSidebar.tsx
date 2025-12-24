@@ -46,9 +46,12 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
         collapsed ? "w-16" : "w-60",
         isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
       )}>
-        <div className="h-16 flex items-center justify-between px-4 border-b">
+        <div className={cn(
+          "h-16 flex items-center border-b",
+          collapsed ? "justify-center px-2" : "justify-between px-4"
+        )}>
           <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
+            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center shrink-0">
               <Package className="h-4 w-4 text-primary-foreground" />
             </div>
             {!collapsed && (
@@ -58,28 +61,41 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
               </div>
             )}
           </div>
-          <div className="flex items-center gap-1">
+          {!collapsed && (
+            <div className="flex items-center gap-1">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hidden md:flex h-8 w-8"
+                onClick={() => setCollapsed(true)}
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="md:hidden h-8 w-8"
+                onClick={onClose}
+              >
+                <X className="h-5 w-5" />
+              </Button>
+            </div>
+          )}
+        </div>
+
+        {/* Expand button when collapsed */}
+        {collapsed && (
+          <div className="p-2 border-b">
             <Button
               variant="ghost"
               size="icon"
-              className="hidden md:flex"
-              onClick={() => setCollapsed(!collapsed)}
+              className="w-full h-8"
+              onClick={() => setCollapsed(false)}
             >
-              <ChevronLeft className={cn(
-                "h-4 w-4 transition-transform",
-                collapsed && "rotate-180"
-              )} />
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="md:hidden"
-              onClick={onClose}
-            >
-              <X className="h-5 w-5" />
+              <ChevronLeft className="h-4 w-4 rotate-180" />
             </Button>
           </div>
-        </div>
+        )}
 
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {menuItems.map((item) => (
