@@ -159,11 +159,132 @@
 
   /* Stats card consistent inner element */
   .stat-icon-container {
-    @apply p-3 rounded-lg;
+    @apply p-3 rounded-DEFAULT;
   }
 
   /* Consistent inner card sections */
   .card-section {
-    @apply p-4 bg-muted/50 rounded-lg;
+    @apply p-4 bg-muted/50 rounded-DEFAULT;
+  }
+
+  /* ========== TYPOGRAPHY SYSTEM ========== */
+  
+  /* Display - Hero headlines, landing pages */
+  .text-display-lg {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight;
+  }
+  
+  .text-display {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight;
+  }
+  
+  .text-display-sm {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-tight;
+  }
+
+  /* Headings - Page titles, section headers */
+  .text-heading-xl {
+    @apply text-2xl md:text-3xl font-bold tracking-tight;
+  }
+  
+  .text-heading-lg {
+    @apply text-xl md:text-2xl font-semibold tracking-tight;
+  }
+  
+  .text-heading {
+    @apply text-lg md:text-xl font-semibold;
+  }
+  
+  .text-heading-sm {
+    @apply text-base md:text-lg font-semibold;
+  }
+
+  /* Subheadings - Card titles, subsections */
+  .text-subtitle {
+    @apply text-base font-medium text-foreground;
+  }
+  
+  .text-subtitle-sm {
+    @apply text-sm font-medium text-foreground;
+  }
+
+  /* Body text */
+  .text-body-lg {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+  
+  .text-body {
+    @apply text-sm md:text-base leading-relaxed;
+  }
+  
+  .text-body-sm {
+    @apply text-xs md:text-sm leading-relaxed;
+  }
+
+  /* Labels & Captions */
+  .text-label {
+    @apply text-sm font-medium text-foreground;
+  }
+  
+  .text-label-sm {
+    @apply text-xs font-medium text-foreground;
+  }
+  
+  .text-caption {
+    @apply text-xs text-muted-foreground;
+  }
+  
+  .text-overline {
+    @apply text-xs font-semibold uppercase tracking-wider text-muted-foreground;
+  }
+
+  /* Muted variants */
+  .text-muted {
+    @apply text-muted-foreground;
+  }
+
+  /* Links */
+  .text-link {
+    @apply text-primary hover:text-primary/80 underline-offset-4 hover:underline transition-colors cursor-pointer;
+  }
+
+  /* Numbers & Stats */
+  .text-stat-lg {
+    @apply text-3xl md:text-4xl font-bold tracking-tight tabular-nums;
+  }
+  
+  .text-stat {
+    @apply text-2xl md:text-3xl font-bold tracking-tight tabular-nums;
+  }
+  
+  .text-stat-sm {
+    @apply text-xl md:text-2xl font-bold tracking-tight tabular-nums;
+  }
+
+  /* Code/Mono */
+  .text-code {
+    @apply font-mono text-sm bg-muted px-1.5 py-0.5 rounded-sm;
+  }
+
+  /* Truncation utilities */
+  .text-truncate {
+    @apply truncate;
+  }
+  
+  .text-truncate-2 {
+    @apply line-clamp-2;
+  }
+  
+  .text-truncate-3 {
+    @apply line-clamp-3;
+  }
+
+  /* Page breadcrumb */
+  .breadcrumb {
+    @apply flex items-center gap-2 text-sm text-muted-foreground;
+  }
+  
+  .breadcrumb-current {
+    @apply text-foreground font-medium;
   }
 }
