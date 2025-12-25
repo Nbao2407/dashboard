@@ -76,6 +76,15 @@ const App = () => (
           <Route path="/staff/maintenance" element={<Maintenance />} />
           <Route path="/staff/reports" element={<StaffReports />} />
           
+          {/* Customer Routes */}
+          <Route path="/customer" element={<CustomerDashboard />} />
+          <Route path="/customer/profile" element={<CustomerProfile />} />
+          <Route path="/customer/search" element={<SearchWarehouse />} />
+          <Route path="/customer/bookings" element={<MyBookings />} />
+          <Route path="/customer/contracts" element={<MyContracts />} />
+          <Route path="/customer/invoices" element={<Invoices />} />
+          <Route path="/customer/support" element={<Support />} />
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
