@@ -3,8 +3,15 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+
+// Public pages
+import PublicLayout from "./components/layout/PublicLayout";
+import Home from "./pages/public/Home";
+import About from "./pages/public/About";
+import Warehouses from "./pages/public/Warehouses";
+import Pricing from "./pages/public/Pricing";
+import Contact from "./pages/public/Contact";
 
 // Admin pages
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -33,7 +40,14 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          {/* Public Routes */}
+          <Route element={<PublicLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/warehouses" element={<Warehouses />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/contact" element={<Contact />} />
+          </Route>
           
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminDashboard />} />
