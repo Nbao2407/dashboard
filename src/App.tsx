@@ -31,6 +31,15 @@ import Inventory from "./pages/staff/Inventory";
 import Maintenance from "./pages/staff/Maintenance";
 import StaffReports from "./pages/staff/StaffReports";
 
+// Customer pages
+import CustomerDashboard from "./pages/customer/CustomerDashboard";
+import CustomerProfile from "./pages/customer/CustomerProfile";
+import SearchWarehouse from "./pages/customer/SearchWarehouse";
+import MyBookings from "./pages/customer/MyBookings";
+import MyContracts from "./pages/customer/MyContracts";
+import Invoices from "./pages/customer/Invoices";
+import Support from "./pages/customer/Support";
+
 const queryClient = new QueryClient();
 
 const App = () => (
