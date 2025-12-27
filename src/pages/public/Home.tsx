@@ -1,34 +1,38 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { 
   ArrowRight, 
   Warehouse, 
-  Play,
-  RefreshCw,
-  Unlock,
-  Building2
+  ChevronDown
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
 import warehouseHero from "@/assets/warehouse-hero.jpg";
 
-const features = [
-  {
-    icon: Building2,
-    label: "Chi tiết từng kho",
-  },
-  {
-    icon: RefreshCw,
-    label: "Cập nhật hàng ngày",
-  },
-  {
-    icon: Unlock,
-    label: "Truy cập không giới hạn",
-  },
+const goodsTypes = [
+  "Hàng tiêu dùng",
+  "Hàng điện tử",
+  "Hàng thực phẩm",
+  "Hàng may mặc",
+  "Hàng nội thất",
+  "Nguyên vật liệu",
+  "Khác",
 ];
 
 const Home = () => {
+  const [goodsType, setGoodsType] = useState("");
+  const [quantity, setQuantity] = useState("");
+
   return (
     <div className="flex flex-col">
-      {/* Hero Section - With Bordered Image */}
+      {/* Hero Section */}
       <section className="py-6 lg:py-8">
         <div className="container mx-auto px-4">
           <div className="relative min-h-[550px] lg:min-h-[650px] rounded-2xl overflow-hidden">
@@ -36,58 +40,84 @@ const Home = () => {
             <div className="absolute inset-0">
               <img 
                 src={warehouseHero} 
-                alt="Kho bãi cho thuê" 
+                alt="Kho hàng thông minh" 
                 className="w-full h-full object-cover"
               />
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+              {/* Light Overlay for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
             </div>
 
             {/* Content */}
-            <div className="relative h-full px-6 lg:px-12 flex flex-col justify-center min-h-[550px] lg:min-h-[650px] py-12">
-              {/* Main Heading */}
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-8 max-w-2xl">
-                Kho bãi cho thuê
-                <br />
-                tại Việt Nam — lưu trữ an toàn
-                <br />
-                <span className="text-white/90">
-                  đồ đạc, hàng hóa từ 1 m²
-                </span>
-              </h1>
+            <div className="relative h-full px-6 lg:px-12 flex items-center min-h-[550px] lg:min-h-[650px]">
+              <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full">
+                {/* Left - Headline */}
+                <div>
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                    <span className="text-white">Kho hàng thông minh.</span>
+                    <br />
+                    <span className="text-white/90">Tối ưu lợi nhuận.</span>
+                  </h1>
+                  <p className="mt-6 text-lg text-white/80 max-w-md">
+                    Giải pháp lưu trữ hiện đại với công nghệ quản lý tiên tiến
+                  </p>
+                </div>
 
-              {/* Video Play Button - positioned to the right */}
-              <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:flex">
-                <button className="group flex items-center justify-center h-20 w-20 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all">
-                  <Play className="h-8 w-8 text-white fill-white ml-1" />
-                </button>
-              </div>
+                {/* Right - Floating Quote Form */}
+                <div className="lg:justify-self-end w-full max-w-md">
+                  <div className="bg-background rounded-xl shadow-elevated p-6 lg:p-8">
+                    <h2 className="text-xl font-semibold text-foreground mb-6">
+                      Tính nhanh phí lưu kho
+                    </h2>
+                    
+                    <div className="space-y-4">
+                      {/* Goods Type Dropdown */}
+                      <div>
+                        <label className="block text-sm font-medium text-muted-foreground mb-2">
+                          Loại hàng hóa
+                        </label>
+                        <Select value={goodsType} onValueChange={setGoodsType}>
+                          <SelectTrigger className="w-full h-12 bg-background border-border">
+                            <SelectValue placeholder="Chọn loại hàng hóa" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-background border-border z-50">
+                            {goodsTypes.map((type) => (
+                              <SelectItem key={type} value={type}>
+                                {type}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
 
-              {/* Feature Badges */}
-              <div className="flex flex-wrap gap-3 mb-8">
-                {features.map((feature) => (
-                  <div 
-                    key={feature.label}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white"
-                  >
-                    <feature.icon className="h-4 w-4" />
-                    <span className="text-sm font-medium">{feature.label}</span>
+                      {/* Quantity Input */}
+                      <div>
+                        <label className="block text-sm font-medium text-muted-foreground mb-2">
+                          Số lượng dự kiến (m³)
+                        </label>
+                        <Input
+                          type="number"
+                          placeholder="Nhập số lượng"
+                          value={quantity}
+                          onChange={(e) => setQuantity(e.target.value)}
+                          className="h-12 bg-background border-border"
+                        />
+                      </div>
+
+                      {/* Submit Button - Orange */}
+                      <Button 
+                        size="lg"
+                        className="w-full h-12 mt-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold"
+                      >
+                        Nhận báo giá ngay
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </Button>
+                    </div>
+
+                    <p className="text-xs text-muted-foreground text-center mt-4">
+                      Miễn phí tư vấn • Phản hồi trong 24h
+                    </p>
                   </div>
-                ))}
-              </div>
-
-              {/* CTA Button */}
-              <div className="mt-auto">
-                <Button 
-                  size="lg" 
-                  className="w-full sm:w-auto min-w-[300px] h-14 text-base font-semibold rounded-lg bg-primary hover:bg-primary/90"
-                  asChild
-                >
-                  <Link to="/warehouses">
-                    Chọn kho ngay
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
+                </div>
               </div>
             </div>
           </div>
