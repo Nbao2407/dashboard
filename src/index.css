@@ -2,167 +2,170 @@
 @tailwind components;
 @tailwind utilities;
 
-/* GenHub Design System - Clean Color Architecture */
+/* 
+  GenHub Design System
+  =====================
+  60-30-10 Rule:
+  - 60% Neutral (backgrounds, body text)
+  - 30% Secondary (cards, borders, muted surfaces)  
+  - 10% Accent (CTAs, links, key highlights)
+*/
 
 @layer base {
   :root {
-    /* ========== NEUTRAL COLORS ========== */
-    /* Pure grays: hue=0, saturation=0, vary lightness only */
-    --background: 0 0% 99%;           /* #FCFCFC - Main background */
-    --background-elevated: 0 0% 100%; /* #FFFFFF - Cards, elevated surfaces */
-    --foreground: 0 0% 9%;            /* #171717 - Primary text */
+    /* ========== 60% - NEUTRAL (Dominant) ========== */
+    /* Pure grays: hue=0, sat=0 for clean, professional look */
+    --background: 0 0% 98%;           /* Page background */
+    --foreground: 0 0% 12%;           /* Primary text - high contrast */
+    --foreground-muted: 0 0% 40%;     /* Secondary text */
     
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 9%;
+    /* ========== 30% - SECONDARY (Supporting) ========== */
+    /* Slightly tinted grays for depth and hierarchy */
+    --card: 0 0% 100%;                /* Elevated surfaces */
+    --card-foreground: 0 0% 12%;
+    
+    --secondary: 0 0% 96%;            /* Secondary backgrounds */
+    --secondary-foreground: 0 0% 20%;
+    
+    --muted: 0 0% 95%;                /* Muted/disabled areas */
+    --muted-foreground: 0 0% 45%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 9%;
+    --popover-foreground: 0 0% 12%;
     
-    --muted: 0 0% 96%;                /* #F5F5F5 - Subtle backgrounds */
-    --muted-foreground: 0 0% 45%;     /* #737373 - Secondary text */
+    /* Borders - very subtle */
+    --border: 0 0% 89%;
+    --border-subtle: 0 0% 93%;
+    --input: 0 0% 89%;
     
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 15%;
-    
-    /* Borders - subtle, close to background */
-    --border: 0 0% 90%;               /* #E5E5E5 */
-    --border-subtle: 0 0% 93%;        /* #EDEDED - Very subtle borders */
-    --input: 0 0% 90%;
-    
-    /* ========== PRIMARY/BRAND COLORS ========== */
-    /* Teal brand color - fixed hue, vary lightness */
-    --primary: 173 77% 26%;           /* Main brand - buttons, links */
+    /* ========== 10% - ACCENT (Highlight) ========== */
+    /* Teal brand - use sparingly for maximum impact */
+    --primary: 173 80% 25%;           /* Main CTAs */
     --primary-foreground: 0 0% 100%;
-    --primary-light: 173 65% 45%;     /* Hover states */
-    --primary-dark: 173 80% 18%;      /* Active/pressed */
-    --primary-muted: 173 30% 90%;     /* Subtle brand backgrounds */
+    --primary-light: 173 70% 40%;     /* Hover */
+    --primary-dark: 173 85% 18%;      /* Active */
+    --primary-muted: 173 25% 94%;     /* Subtle backgrounds */
     
-    --accent: 173 77% 26%;            /* Same as primary for consistency */
+    --accent: 173 80% 25%;
     --accent-foreground: 0 0% 100%;
     
-    --ring: 173 77% 26%;
+    --ring: 173 80% 25%;
     
-    /* ========== SEMANTIC COLORS ========== */
-    /* Success - Green */
-    --success: 142 72% 35%;
+    /* ========== SEMANTIC (Use contextually) ========== */
+    --success: 145 65% 36%;
     --success-foreground: 0 0% 100%;
-    --success-muted: 142 40% 92%;
+    --success-muted: 145 35% 94%;
     
-    /* Warning - Amber */
-    --warning: 38 92% 45%;
-    --warning-foreground: 0 0% 100%;
-    --warning-muted: 38 50% 92%;
+    --warning: 40 90% 48%;
+    --warning-foreground: 0 0% 12%;
+    --warning-muted: 40 50% 94%;
     
-    /* Error/Destructive - Red */
-    --destructive: 0 72% 50%;
+    --destructive: 0 70% 52%;
     --destructive-foreground: 0 0% 100%;
-    --destructive-muted: 0 40% 95%;
+    --destructive-muted: 0 40% 96%;
     
-    /* Info - Blue */
-    --info: 210 90% 50%;
+    --info: 205 85% 50%;
     --info-foreground: 0 0% 100%;
-    --info-muted: 210 50% 94%;
+    --info-muted: 205 45% 94%;
     
     /* ========== SHADOWS ========== */
-    /* Short-strong + long-soft combination */
-    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.04);
-    --shadow-md: 0 2px 4px 0 hsl(0 0% 0% / 0.05), 0 6px 20px -4px hsl(0 0% 0% / 0.08);
-    --shadow-lg: 0 4px 8px 0 hsl(0 0% 0% / 0.04), 0 12px 40px -8px hsl(0 0% 0% / 0.12);
-    --shadow-xl: 0 8px 16px 0 hsl(0 0% 0% / 0.04), 0 24px 60px -12px hsl(0 0% 0% / 0.15);
+    --shadow-xs: 0 1px 2px hsl(0 0% 0% / 0.03);
+    --shadow-sm: 0 1px 3px hsl(0 0% 0% / 0.04), 0 1px 2px hsl(0 0% 0% / 0.03);
+    --shadow-md: 0 4px 6px hsl(0 0% 0% / 0.04), 0 2px 4px hsl(0 0% 0% / 0.03);
+    --shadow-lg: 0 10px 15px hsl(0 0% 0% / 0.05), 0 4px 6px hsl(0 0% 0% / 0.03);
+    --shadow-xl: 0 20px 25px hsl(0 0% 0% / 0.06), 0 8px 10px hsl(0 0% 0% / 0.04);
     
-    /* ========== CORNER RADIUS ========== */
-    --radius: 0.625rem;              /* 10px - Default */
-    --radius-sm: 0.375rem;           /* 6px - Small elements */
-    --radius-md: 0.75rem;            /* 12px - Cards */
-    --radius-lg: 1rem;               /* 16px - Large cards, modals */
-    --radius-xl: 1.25rem;            /* 20px - Hero sections */
-    --radius-full: 9999px;           /* Pills */
+    /* ========== RADIUS ========== */
+    --radius: 0.5rem;
+    --radius-sm: 0.25rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-full: 9999px;
     
     /* ========== SPACING ========== */
-    --spacing-xs: 0.25rem;           /* 4px */
-    --spacing-sm: 0.5rem;            /* 8px */
-    --spacing-md: 1rem;              /* 16px */
-    --spacing-lg: 1.5rem;            /* 24px */
-    --spacing-xl: 2rem;              /* 32px */
-    --spacing-2xl: 3rem;             /* 48px */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
     
     /* ========== SIDEBAR ========== */
-    --sidebar-width: 16rem;          /* 256px */
-    --sidebar-width-collapsed: 4rem; /* 64px */
+    --sidebar-width: 16rem;
+    --sidebar-width-collapsed: 4rem;
     
-    --sidebar-background: 0 0% 99%;
-    --sidebar-foreground: 0 0% 20%;
-    --sidebar-primary: 173 77% 26%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 25%;
+    --sidebar-primary: 173 80% 25%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 96%;
-    --sidebar-accent-foreground: 0 0% 9%;
-    --sidebar-border: 0 0% 92%;
-    --sidebar-ring: 173 77% 26%;
+    --sidebar-accent-foreground: 0 0% 12%;
+    --sidebar-border: 0 0% 91%;
+    --sidebar-ring: 173 80% 25%;
   }
 
   .dark {
-    /* ========== NEUTRAL COLORS - DARK ========== */
-    /* Flip lightness: 100 - L, then tweak */
-    --background: 0 0% 7%;            /* #121212 */
-    --background-elevated: 0 0% 10%;  /* #1A1A1A */
-    --foreground: 0 0% 95%;           /* #F2F2F2 */
+    /* ========== 60% - NEUTRAL (Dark) ========== */
+    --background: 0 0% 6%;            /* Deep dark */
+    --foreground: 0 0% 93%;           /* Light text */
+    --foreground-muted: 0 0% 60%;
     
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 95%;
+    /* ========== 30% - SECONDARY (Dark) ========== */
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 93%;
     
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 95%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 85%;
     
-    --muted: 0 0% 14%;                /* #242424 */
-    --muted-foreground: 0 0% 55%;     /* #8C8C8C */
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 55%;
     
-    --secondary: 0 0% 14%;
-    --secondary-foreground: 0 0% 90%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 93%;
     
-    /* Borders - subtle in dark mode */
-    --border: 0 0% 18%;               /* #2E2E2E */
-    --border-subtle: 0 0% 14%;        /* #242424 */
+    --border: 0 0% 18%;
+    --border-subtle: 0 0% 14%;
     --input: 0 0% 18%;
     
-    /* ========== PRIMARY/BRAND - DARK ========== */
-    /* Slightly lighter for visibility */
-    --primary: 173 65% 40%;
+    /* ========== 10% - ACCENT (Dark) ========== */
+    --primary: 173 65% 42%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 173 60% 50%;
-    --primary-dark: 173 70% 30%;
-    --primary-muted: 173 30% 15%;
+    --primary-light: 173 60% 52%;
+    --primary-dark: 173 70% 32%;
+    --primary-muted: 173 30% 14%;
     
-    --accent: 173 65% 40%;
+    --accent: 173 65% 42%;
     --accent-foreground: 0 0% 100%;
     
-    --ring: 173 65% 40%;
+    --ring: 173 65% 42%;
     
-    /* ========== SEMANTIC - DARK ========== */
-    --success: 142 60% 45%;
+    /* ========== SEMANTIC (Dark) ========== */
+    --success: 145 55% 45%;
     --success-foreground: 0 0% 100%;
-    --success-muted: 142 30% 15%;
+    --success-muted: 145 25% 14%;
     
-    --warning: 38 85% 50%;
-    --warning-foreground: 0 0% 100%;
-    --warning-muted: 38 40% 15%;
+    --warning: 40 85% 52%;
+    --warning-foreground: 0 0% 12%;
+    --warning-muted: 40 35% 14%;
     
-    --destructive: 0 65% 55%;
+    --destructive: 0 60% 55%;
     --destructive-foreground: 0 0% 100%;
-    --destructive-muted: 0 30% 15%;
+    --destructive-muted: 0 30% 14%;
     
-    --info: 210 80% 55%;
+    --info: 205 75% 55%;
     --info-foreground: 0 0% 100%;
-    --info-muted: 210 40% 15%;
+    --info-muted: 205 35% 14%;
     
-    /* ========== SIDEBAR - DARK ========== */
-    --sidebar-background: 0 0% 7%;
-    --sidebar-foreground: 0 0% 85%;
-    --sidebar-primary: 173 65% 40%;
+    /* ========== SIDEBAR (Dark) ========== */
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 80%;
+    --sidebar-primary: 173 65% 42%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 14%;
-    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-accent-foreground: 0 0% 93%;
     --sidebar-border: 0 0% 18%;
-    --sidebar-ring: 173 65% 40%;
+    --sidebar-ring: 173 65% 42%;
   }
 }
 
