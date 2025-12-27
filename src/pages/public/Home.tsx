@@ -64,30 +64,61 @@ const Home = () => {
 
               {/* Horizontal Quote Form */}
               <div className="w-full max-w-4xl">
-                <div className="bg-background rounded-xl shadow-elevated overflow-hidden">
+                <div 
+                  className={`bg-background rounded-xl overflow-hidden transition-all duration-500 ease-out ${
+                    isFormExpanded 
+                      ? "shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)]" 
+                      : "shadow-lg hover:shadow-xl"
+                  }`}
+                >
                   {/* Form Header - Clickable to expand/collapse */}
                   <button
                     onClick={() => setIsFormExpanded(!isFormExpanded)}
-                    className="w-full flex items-center justify-between p-4 lg:px-6 hover:bg-muted/50 transition-colors"
-                  >
-                    <h2 className="text-lg font-semibold text-foreground">
-                      Tính nhanh phí lưu kho
-                    </h2>
-                    <ChevronDown 
-                      className={`h-5 w-5 text-muted-foreground transition-transform duration-200 ${
-                        isFormExpanded ? "rotate-180" : ""
-                      }`} 
-                    />
-                  </button>
-
-                  {/* Form Content - Expandable with animation */}
-                  <div 
-                    className={`grid transition-all duration-300 ease-out ${
-                      isFormExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    className={`w-full flex items-center justify-between p-4 lg:px-6 transition-all duration-300 group ${
+                      isFormExpanded ? "bg-transparent" : "hover:bg-muted/30"
                     }`}
                   >
+                    <div className="flex items-center gap-3">
+                      <div className={`flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ${
+                        isFormExpanded 
+                          ? "bg-orange-500 scale-110" 
+                          : "bg-orange-500/10 group-hover:bg-orange-500/20"
+                      }`}>
+                        <Warehouse className={`h-5 w-5 transition-colors duration-300 ${
+                          isFormExpanded ? "text-white" : "text-orange-500"
+                        }`} />
+                      </div>
+                      <h2 className="text-lg font-semibold text-foreground">
+                        Tính nhanh phí lưu kho
+                      </h2>
+                    </div>
+                    <div className={`flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 ${
+                      isFormExpanded 
+                        ? "bg-muted rotate-180" 
+                        : "bg-transparent group-hover:bg-muted"
+                    }`}>
+                      <ChevronDown className="h-5 w-5 text-muted-foreground" />
+                    </div>
+                  </button>
+
+                  {/* Form Content - Expandable with smooth animation */}
+                  <div 
+                    className="grid transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
+                    style={{
+                      gridTemplateRows: isFormExpanded ? "1fr" : "0fr",
+                    }}
+                  >
                     <div className="overflow-hidden">
-                      <div className="px-4 lg:px-6 pb-4 lg:pb-6">
+                      <div 
+                        className="px-4 lg:px-6 pb-4 lg:pb-6 transition-all duration-500"
+                        style={{
+                          opacity: isFormExpanded ? 1 : 0,
+                          transform: isFormExpanded ? "translateY(0)" : "translateY(-10px)",
+                        }}
+                      >
+                        {/* Separator line */}
+                        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-5" />
+                        
                         <div className="flex flex-col lg:flex-row gap-4 items-end">
                           {/* Goods Type Dropdown */}
                           <div className="flex-1 w-full">
@@ -95,7 +126,7 @@ const Home = () => {
                               Loại hàng hóa
                             </label>
                             <Select value={goodsType} onValueChange={setGoodsType}>
-                              <SelectTrigger className="w-full h-12 bg-background border-border">
+                              <SelectTrigger className="w-full h-12 bg-background border-border hover:border-orange-300 focus:border-orange-500 transition-colors">
                                 <SelectValue placeholder="Chọn loại hàng hóa" />
                               </SelectTrigger>
                               <SelectContent className="bg-background border-border z-50">
@@ -118,15 +149,15 @@ const Home = () => {
                               placeholder="Nhập số lượng"
                               value={quantity}
                               onChange={(e) => setQuantity(e.target.value)}
-                              className="h-12 bg-background border-border"
+                              className="h-12 bg-background border-border hover:border-orange-300 focus:border-orange-500 transition-colors"
                             />
                           </div>
 
-                          {/* Submit Button - Orange */}
+                          {/* Submit Button - Orange with glow */}
                           <div className="w-full lg:w-auto">
                             <Button 
                               size="lg"
-                              className="w-full lg:w-auto h-12 px-8 bg-orange-500 hover:bg-orange-600 text-white font-semibold whitespace-nowrap"
+                              className="w-full lg:w-auto h-12 px-8 bg-orange-500 hover:bg-orange-600 text-white font-semibold whitespace-nowrap shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
                             >
                               Nhận báo giá ngay
                               <ArrowRight className="ml-2 h-5 w-5" />
@@ -135,7 +166,12 @@ const Home = () => {
                         </div>
 
                         <p className="text-xs text-muted-foreground text-center lg:text-left mt-4">
-                          Miễn phí tư vấn • Phản hồi trong 24h
+                          <span className="inline-flex items-center gap-1">
+                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                            Miễn phí tư vấn
+                          </span>
+                          <span className="mx-2">•</span>
+                          Phản hồi trong 24h
                         </p>
                       </div>
                     </div>
