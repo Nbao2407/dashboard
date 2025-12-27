@@ -28,65 +28,67 @@ const features = [
 const Home = () => {
   return (
     <div className="flex flex-col">
-      {/* Hero Section - Full Width with Image */}
-      <section className="relative min-h-[600px] lg:min-h-[700px]">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img 
-            src={warehouseHero} 
-            alt="Kho bãi cho thuê" 
-            className="w-full h-full object-cover"
-          />
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
-        </div>
-
-        {/* Content */}
-        <div className="relative container mx-auto px-4 h-full">
-          <div className="flex flex-col justify-center min-h-[600px] lg:min-h-[700px] max-w-3xl py-16">
-            {/* Main Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-8">
-              Kho bãi cho thuê
-              <br />
-              tại Việt Nam — lưu trữ an toàn
-              <br />
-              <span className="text-white/90">
-                đồ đạc, hàng hóa từ 1 m²
-              </span>
-            </h1>
-
-            {/* Video Play Button - positioned to the right */}
-            <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:flex">
-              <button className="group flex items-center justify-center h-20 w-20 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all">
-                <Play className="h-8 w-8 text-white fill-white ml-1" />
-              </button>
+      {/* Hero Section - With Bordered Image */}
+      <section className="py-6 lg:py-8">
+        <div className="container mx-auto px-4">
+          <div className="relative min-h-[550px] lg:min-h-[650px] rounded-2xl overflow-hidden">
+            {/* Background Image */}
+            <div className="absolute inset-0">
+              <img 
+                src={warehouseHero} 
+                alt="Kho bãi cho thuê" 
+                className="w-full h-full object-cover"
+              />
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
             </div>
 
-            {/* Feature Badges */}
-            <div className="flex flex-wrap gap-3 mb-8">
-              {features.map((feature) => (
-                <div 
-                  key={feature.label}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white"
+            {/* Content */}
+            <div className="relative h-full px-6 lg:px-12 flex flex-col justify-center min-h-[550px] lg:min-h-[650px] py-12">
+              {/* Main Heading */}
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-8 max-w-2xl">
+                Kho bãi cho thuê
+                <br />
+                tại Việt Nam — lưu trữ an toàn
+                <br />
+                <span className="text-white/90">
+                  đồ đạc, hàng hóa từ 1 m²
+                </span>
+              </h1>
+
+              {/* Video Play Button - positioned to the right */}
+              <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:flex">
+                <button className="group flex items-center justify-center h-20 w-20 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all">
+                  <Play className="h-8 w-8 text-white fill-white ml-1" />
+                </button>
+              </div>
+
+              {/* Feature Badges */}
+              <div className="flex flex-wrap gap-3 mb-8">
+                {features.map((feature) => (
+                  <div 
+                    key={feature.label}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white"
+                  >
+                    <feature.icon className="h-4 w-4" />
+                    <span className="text-sm font-medium">{feature.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA Button */}
+              <div className="mt-auto">
+                <Button 
+                  size="lg" 
+                  className="w-full sm:w-auto min-w-[300px] h-14 text-base font-semibold rounded-lg bg-primary hover:bg-primary/90"
+                  asChild
                 >
-                  <feature.icon className="h-4 w-4" />
-                  <span className="text-sm font-medium">{feature.label}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA Button */}
-            <div className="mt-auto">
-              <Button 
-                size="lg" 
-                className="w-full sm:w-auto min-w-[300px] h-14 text-base font-semibold rounded-lg bg-primary hover:bg-primary/90"
-                asChild
-              >
-                <Link to="/warehouses">
-                  Chọn kho ngay
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
+                  <Link to="/warehouses">
+                    Chọn kho ngay
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
