@@ -4,15 +4,15 @@ import {
   Warehouse, 
   Shield, 
   Clock, 
-  Truck, 
-  CheckCircle, 
   MapPin,
   Lock,
   Eye,
-  Package,
   Search,
   BadgeCheck,
-  Headphones
+  Headphones,
+  Ruler,
+  ThermometerSun,
+  Key
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -21,59 +21,63 @@ import { Input } from "@/components/ui/input";
 const securityFeatures = [
   {
     icon: Lock,
-    title: "Bảo mật đa lớp",
-    description: "Hệ thống khóa điện tử, kiểm soát truy cập bằng sinh trắc học.",
+    title: "Khóa thông minh",
+    description: "Hệ thống khóa điện tử, kiểm soát ra vào bằng thẻ từ/vân tay.",
   },
   {
     icon: Eye,
-    title: "Giám sát 24/7",
-    description: "Camera AI phát hiện bất thường, đội ngũ bảo vệ chuyên nghiệp.",
+    title: "Camera 24/7",
+    description: "Hệ thống camera giám sát toàn bộ khu vực kho.",
   },
   {
     icon: Shield,
-    title: "Bảo hiểm toàn diện",
-    description: "Đền bù 100% giá trị hàng hóa khi có sự cố.",
+    title: "Bảo vệ trực",
+    description: "Đội ngũ bảo vệ chuyên nghiệp túc trực 24/7.",
   },
 ];
 
-const services = [
+const warehouseTypes = [
   {
     icon: Warehouse,
-    title: "Kho thường",
-    description: "Lưu trữ hàng hóa khô, thiết bị, vật liệu xây dựng.",
-    tag: "Phổ biến",
+    title: "Kho nhỏ",
+    size: "20 - 50 m²",
+    description: "Phù hợp hộ kinh doanh, lưu trữ hàng hóa nhỏ lẻ.",
+    price: "Từ 80.000đ/m²",
   },
   {
-    icon: Package,
-    title: "Kho lạnh",
-    description: "Bảo quản thực phẩm, dược phẩm ở nhiệt độ chuẩn.",
-    tag: "Chuyên biệt",
+    icon: Ruler,
+    title: "Kho vừa",
+    size: "50 - 200 m²",
+    description: "Dành cho doanh nghiệp nhỏ, kho hàng bán buôn.",
+    price: "Từ 65.000đ/m²",
   },
   {
-    icon: Truck,
-    title: "Fulfillment",
-    description: "Đóng gói, vận chuyển, quản lý đơn hàng trọn gói.",
-    tag: "Mới",
+    icon: ThermometerSun,
+    title: "Kho lớn",
+    size: "200 - 1000 m²",
+    description: "Kho xưởng sản xuất, trung tâm phân phối.",
+    price: "Từ 50.000đ/m²",
   },
 ];
 
 const stats = [
-  { value: "50+", label: "Kho trên toàn quốc" },
-  { value: "99.9%", label: "Độ an toàn" },
-  { value: "500,000m²", label: "Diện tích" },
+  { value: "50+", label: "Kho cho thuê" },
+  { value: "99%", label: "Khách hài lòng" },
+  { value: "500,000m²", label: "Tổng diện tích" },
   { value: "24/7", label: "Hỗ trợ" },
 ];
 
-const trustBadges = [
-  "ISO 9001:2015",
-  "ISO 14001",
-  "OHSAS 18001",
+const benefits = [
+  "Không cần đặt cọc nhiều tháng",
+  "Linh hoạt thời gian thuê",
+  "Miễn phí tham quan kho",
+  "Hỗ trợ pháp lý hợp đồng",
 ];
 
 const Home = () => {
   return (
     <div className="flex flex-col">
-      {/* Hero Section - Clean, Security-focused */}
+      {/* Hero Section */}
       <section className="relative py-24 lg:py-36 overflow-hidden">
         {/* Subtle grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border-subtle))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border-subtle))_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30" />
@@ -83,44 +87,44 @@ const Home = () => {
             {/* Trust indicator */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-success/10 text-success border border-success/20">
               <BadgeCheck className="h-4 w-4" />
-              <span className="text-body-sm font-medium">Được chứng nhận ISO 9001:2015</span>
+              <span className="text-body-sm font-medium">Uy tín #1 thị trường cho thuê kho</span>
             </div>
             
             <h1 className="text-display leading-tight">
-              Logistics{" "}
-              <span className="text-primary">an toàn</span>
+              Thuê kho{" "}
+              <span className="text-primary">đơn giản</span>
               <br />
-              <span className="text-text-secondary">chất lượng hàng đầu</span>
+              <span className="text-text-secondary">giá cả minh bạch</span>
             </h1>
             
             <p className="text-body-lg text-text-tertiary max-w-2xl mx-auto">
-              GenHub cam kết bảo vệ hàng hóa của bạn với hệ thống kho hiện đại, 
-              giám sát 24/7 và quy trình vận hành chuẩn quốc tế.
+              GenHub cung cấp dịch vụ cho thuê kho bãi với đa dạng diện tích, 
+              vị trí thuận tiện và chi phí hợp lý cho mọi nhu cầu kinh doanh.
             </p>
 
-            {/* Tracking Input - Key Feature */}
+            {/* Search Input */}
             <div className="max-w-lg mx-auto pt-4">
               <div className="flex gap-2 p-2 rounded-xl bg-bg-elevated border border-border-subtle shadow-elevated">
                 <div className="flex-1 flex items-center gap-2 px-3">
                   <Search className="h-5 w-5 text-text-tertiary" />
                   <Input 
-                    placeholder="Nhập mã vận đơn để theo dõi..." 
+                    placeholder="Tìm kho theo khu vực, diện tích..." 
                     className="border-0 bg-transparent focus-visible:ring-0 text-body"
                   />
                 </div>
                 <Button size="lg">
-                  Tra cứu
+                  Tìm kho
                 </Button>
               </div>
               <p className="text-caption text-text-tertiary mt-3">
-                Theo dõi đơn hàng real-time • Nhận thông báo tự động
+                Tìm kho nhanh • So sánh giá • Đặt lịch xem kho miễn phí
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button size="lg" asChild>
                 <Link to="/warehouses">
-                  Tìm kho phù hợp
+                  Xem danh sách kho
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -135,7 +139,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Bar - Minimal */}
+      {/* Stats Bar */}
       <section className="py-8 border-y border-border-subtle bg-bg-elevated">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -149,19 +153,64 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Security Section - Key Differentiator */}
+      {/* Warehouse Types Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <div className="inline-flex items-center gap-2 text-primary mb-4">
+              <Key className="h-5 w-5" />
+              <span className="text-subtitle font-medium">Loại hình kho</span>
+            </div>
+            <h2 className="text-heading-xl mb-4">Đa dạng diện tích cho thuê</h2>
+            <p className="text-body text-text-tertiary">
+              Từ kho nhỏ cho hộ kinh doanh đến kho lớn cho doanh nghiệp.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {warehouseTypes.map((type) => (
+              <Card key={type.title} className="group card-interactive relative overflow-hidden">
+                <CardContent className="pt-6">
+                  <div className="absolute top-4 right-4">
+                    <span className="px-2 py-1 rounded text-caption bg-primary/10 text-primary font-medium">
+                      {type.size}
+                    </span>
+                  </div>
+                  <div className="h-12 w-12 rounded-lg bg-bg-subtle flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
+                    <type.icon className="h-6 w-6 text-text-secondary group-hover:text-primary transition-colors" />
+                  </div>
+                  <h3 className="text-heading-sm mb-2">{type.title}</h3>
+                  <p className="text-body-sm text-text-tertiary mb-3">{type.description}</p>
+                  <div className="text-subtitle text-primary">{type.price}</div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <Button variant="outline" asChild>
+              <Link to="/pricing">
+                Xem bảng giá chi tiết
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Security Section */}
       <section className="py-20 bg-bg-subtle">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <div className="inline-flex items-center gap-2 text-primary mb-4">
               <Shield className="h-5 w-5" />
-              <span className="text-subtitle font-medium">An ninh & Bảo mật</span>
+              <span className="text-subtitle font-medium">An ninh kho bãi</span>
             </div>
             <h2 className="text-heading-xl mb-4">
-              Hàng hóa của bạn được bảo vệ tuyệt đối
+              Hàng hóa được bảo vệ an toàn
             </h2>
             <p className="text-body text-text-tertiary">
-              Hệ thống an ninh đa lớp kết hợp công nghệ AI đảm bảo an toàn 24/7.
+              Hệ thống an ninh đa lớp đảm bảo an toàn cho hàng hóa của bạn.
             </p>
           </div>
 
@@ -178,74 +227,24 @@ const Home = () => {
               </Card>
             ))}
           </div>
-
-          {/* Trust Badges */}
-          <div className="flex flex-wrap justify-center gap-4 mt-12">
-            {trustBadges.map((badge) => (
-              <div 
-                key={badge}
-                className="px-4 py-2 rounded-full border border-border-subtle bg-bg text-body-sm text-text-secondary"
-              >
-                {badge}
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-heading-xl mb-4">Dịch vụ nổi bật</h2>
-            <p className="text-body text-text-tertiary">
-              Giải pháp lưu trữ đa dạng cho mọi nhu cầu kinh doanh.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {services.map((service) => (
-              <Card key={service.title} className="group card-interactive relative overflow-hidden">
-                <CardContent className="pt-6">
-                  <div className="absolute top-4 right-4">
-                    <span className="px-2 py-1 rounded text-caption bg-accent/10 text-accent font-medium">
-                      {service.tag}
-                    </span>
-                  </div>
-                  <div className="h-12 w-12 rounded-lg bg-bg-subtle flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
-                    <service.icon className="h-6 w-6 text-text-secondary group-hover:text-primary transition-colors" />
-                  </div>
-                  <h3 className="text-heading-sm mb-2">{service.title}</h3>
-                  <p className="text-body-sm text-text-tertiary mb-4">{service.description}</p>
-                  <Link 
-                    to="/warehouses" 
-                    className="inline-flex items-center text-body-sm text-primary hover:underline"
-                  >
-                    Tìm hiểu thêm
-                    <ArrowRight className="ml-1 h-3 w-3" />
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section - Simple Steps */}
+      {/* Process Section */}
       <section className="py-20 bg-bg-elevated border-y border-border-subtle">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
             <div className="space-y-8">
               <div>
-                <h2 className="text-heading-xl mb-4">Quy trình đơn giản</h2>
+                <h2 className="text-heading-xl mb-4">Thuê kho chỉ 4 bước</h2>
                 <p className="text-body text-text-tertiary">
-                  Chỉ 4 bước để bắt đầu sử dụng dịch vụ kho bãi chuyên nghiệp.
+                  Quy trình đơn giản, nhanh chóng, không rườm rà.
                 </p>
               </div>
               
               <div className="space-y-6">
                 {[
-                  { step: "01", title: "Tìm kiếm", desc: "Lọc kho theo vị trí, diện tích phù hợp" },
+                  { step: "01", title: "Tìm kho", desc: "Chọn vị trí và diện tích phù hợp nhu cầu" },
                   { step: "02", title: "Tham quan", desc: "Đặt lịch xem kho trực tiếp hoặc qua video" },
                   { step: "03", title: "Ký kết", desc: "Hợp đồng điện tử nhanh chóng, minh bạch" },
                   { step: "04", title: "Sử dụng", desc: "Bàn giao kho và bắt đầu vận hành" },
@@ -270,16 +269,27 @@ const Home = () => {
               </Button>
             </div>
 
-            {/* Visual element */}
+            {/* Benefits list */}
             <div className="relative hidden lg:block">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 border border-border-subtle flex items-center justify-center">
-                <div className="text-center space-y-4">
-                  <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                    <MapPin className="h-10 w-10 text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-heading-lg">50+</div>
-                    <div className="text-body-sm text-text-tertiary">Kho trên toàn quốc</div>
+              <div className="rounded-2xl bg-bg border border-border-subtle p-8 space-y-6">
+                <h3 className="text-heading-sm">Ưu điểm khi thuê kho tại GenHub</h3>
+                <div className="space-y-4">
+                  {benefits.map((benefit, index) => (
+                    <div key={index} className="flex items-center gap-3">
+                      <div className="h-6 w-6 rounded-full bg-success/10 flex items-center justify-center shrink-0">
+                        <BadgeCheck className="h-4 w-4 text-success" />
+                      </div>
+                      <span className="text-body">{benefit}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="pt-4 border-t border-border-subtle">
+                  <div className="flex items-center gap-3">
+                    <Warehouse className="h-8 w-8 text-primary" />
+                    <div>
+                      <div className="text-heading-lg text-primary">50+</div>
+                      <div className="text-caption text-text-tertiary">Kho cho thuê toàn quốc</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -288,17 +298,17 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section - Clean */}
+      {/* CTA Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center space-y-6">
-            <h2 className="text-heading-xl">Sẵn sàng bắt đầu?</h2>
+            <h2 className="text-heading-xl">Bắt đầu thuê kho ngay hôm nay</h2>
             <p className="text-body text-text-tertiary">
-              Liên hệ ngay để nhận tư vấn miễn phí từ đội ngũ chuyên gia.
+              Đăng ký miễn phí để xem chi tiết các kho và nhận báo giá.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>
-                <Link to="/register">Đăng ký tài khoản</Link>
+                <Link to="/register">Đăng ký miễn phí</Link>
               </Button>
               <Button size="lg" variant="ghost" asChild>
                 <Link to="/pricing">Xem bảng giá →</Link>
