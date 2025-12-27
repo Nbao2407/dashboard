@@ -29,13 +29,14 @@ const goodsTypes = [
 const Home = () => {
   const [goodsType, setGoodsType] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [isFormExpanded, setIsFormExpanded] = useState(true);
 
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="py-6 lg:py-8">
         <div className="container mx-auto px-4">
-          <div className="relative min-h-[550px] lg:min-h-[650px] rounded-2xl overflow-hidden">
+          <div className="relative min-h-[500px] lg:min-h-[550px] rounded-2xl overflow-hidden">
             {/* Background Image */}
             <div className="absolute inset-0">
               <img 
@@ -48,75 +49,91 @@ const Home = () => {
             </div>
 
             {/* Content */}
-            <div className="relative h-full px-6 lg:px-12 flex items-center min-h-[550px] lg:min-h-[650px]">
-              <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full">
-                {/* Left - Headline */}
-                <div>
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                    <span className="text-white">Kho hàng thông minh.</span>
-                    <br />
-                    <span className="text-white/90">Tối ưu lợi nhuận.</span>
-                  </h1>
-                  <p className="mt-6 text-lg text-white/80 max-w-md">
-                    Giải pháp lưu trữ hiện đại với công nghệ quản lý tiên tiến
-                  </p>
-                </div>
+            <div className="relative h-full px-6 lg:px-12 flex flex-col justify-center min-h-[500px] lg:min-h-[550px] py-12">
+              {/* Headline */}
+              <div className="max-w-2xl mb-8">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                  <span className="text-white">Kho hàng thông minh.</span>
+                  <br />
+                  <span className="text-white/90">Tối ưu lợi nhuận.</span>
+                </h1>
+                <p className="mt-6 text-lg text-white/80 max-w-md">
+                  Giải pháp lưu trữ hiện đại với công nghệ quản lý tiên tiến
+                </p>
+              </div>
 
-                {/* Right - Floating Quote Form */}
-                <div className="lg:justify-self-end w-full max-w-md">
-                  <div className="bg-background rounded-xl shadow-elevated p-6 lg:p-8">
-                    <h2 className="text-xl font-semibold text-foreground mb-6">
+              {/* Horizontal Quote Form */}
+              <div className="w-full max-w-4xl">
+                <div className="bg-background rounded-xl shadow-elevated overflow-hidden">
+                  {/* Form Header - Clickable to expand/collapse */}
+                  <button
+                    onClick={() => setIsFormExpanded(!isFormExpanded)}
+                    className="w-full flex items-center justify-between p-4 lg:px-6 hover:bg-muted/50 transition-colors"
+                  >
+                    <h2 className="text-lg font-semibold text-foreground">
                       Tính nhanh phí lưu kho
                     </h2>
-                    
-                    <div className="space-y-4">
-                      {/* Goods Type Dropdown */}
-                      <div>
-                        <label className="block text-sm font-medium text-muted-foreground mb-2">
-                          Loại hàng hóa
-                        </label>
-                        <Select value={goodsType} onValueChange={setGoodsType}>
-                          <SelectTrigger className="w-full h-12 bg-background border-border">
-                            <SelectValue placeholder="Chọn loại hàng hóa" />
-                          </SelectTrigger>
-                          <SelectContent className="bg-background border-border z-50">
-                            {goodsTypes.map((type) => (
-                              <SelectItem key={type} value={type}>
-                                {type}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                    <ChevronDown 
+                      className={`h-5 w-5 text-muted-foreground transition-transform duration-200 ${
+                        isFormExpanded ? "rotate-180" : ""
+                      }`} 
+                    />
+                  </button>
+
+                  {/* Form Content - Expandable */}
+                  {isFormExpanded && (
+                    <div className="px-4 lg:px-6 pb-4 lg:pb-6">
+                      <div className="flex flex-col lg:flex-row gap-4 items-end">
+                        {/* Goods Type Dropdown */}
+                        <div className="flex-1 w-full">
+                          <label className="block text-sm font-medium text-muted-foreground mb-2">
+                            Loại hàng hóa
+                          </label>
+                          <Select value={goodsType} onValueChange={setGoodsType}>
+                            <SelectTrigger className="w-full h-12 bg-background border-border">
+                              <SelectValue placeholder="Chọn loại hàng hóa" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-background border-border z-50">
+                              {goodsTypes.map((type) => (
+                                <SelectItem key={type} value={type}>
+                                  {type}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        {/* Quantity Input */}
+                        <div className="flex-1 w-full">
+                          <label className="block text-sm font-medium text-muted-foreground mb-2">
+                            Số lượng dự kiến (m³)
+                          </label>
+                          <Input
+                            type="number"
+                            placeholder="Nhập số lượng"
+                            value={quantity}
+                            onChange={(e) => setQuantity(e.target.value)}
+                            className="h-12 bg-background border-border"
+                          />
+                        </div>
+
+                        {/* Submit Button - Orange */}
+                        <div className="w-full lg:w-auto">
+                          <Button 
+                            size="lg"
+                            className="w-full lg:w-auto h-12 px-8 bg-orange-500 hover:bg-orange-600 text-white font-semibold whitespace-nowrap"
+                          >
+                            Nhận báo giá ngay
+                            <ArrowRight className="ml-2 h-5 w-5" />
+                          </Button>
+                        </div>
                       </div>
 
-                      {/* Quantity Input */}
-                      <div>
-                        <label className="block text-sm font-medium text-muted-foreground mb-2">
-                          Số lượng dự kiến (m³)
-                        </label>
-                        <Input
-                          type="number"
-                          placeholder="Nhập số lượng"
-                          value={quantity}
-                          onChange={(e) => setQuantity(e.target.value)}
-                          className="h-12 bg-background border-border"
-                        />
-                      </div>
-
-                      {/* Submit Button - Orange */}
-                      <Button 
-                        size="lg"
-                        className="w-full h-12 mt-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold"
-                      >
-                        Nhận báo giá ngay
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                      </Button>
+                      <p className="text-xs text-muted-foreground text-center lg:text-left mt-4">
+                        Miễn phí tư vấn • Phản hồi trong 24h
+                      </p>
                     </div>
-
-                    <p className="text-xs text-muted-foreground text-center mt-4">
-                      Miễn phí tư vấn • Phản hồi trong 24h
-                    </p>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
