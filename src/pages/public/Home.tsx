@@ -80,60 +80,66 @@ const Home = () => {
                     />
                   </button>
 
-                  {/* Form Content - Expandable */}
-                  {isFormExpanded && (
-                    <div className="px-4 lg:px-6 pb-4 lg:pb-6">
-                      <div className="flex flex-col lg:flex-row gap-4 items-end">
-                        {/* Goods Type Dropdown */}
-                        <div className="flex-1 w-full">
-                          <label className="block text-sm font-medium text-muted-foreground mb-2">
-                            Loại hàng hóa
-                          </label>
-                          <Select value={goodsType} onValueChange={setGoodsType}>
-                            <SelectTrigger className="w-full h-12 bg-background border-border">
-                              <SelectValue placeholder="Chọn loại hàng hóa" />
-                            </SelectTrigger>
-                            <SelectContent className="bg-background border-border z-50">
-                              {goodsTypes.map((type) => (
-                                <SelectItem key={type} value={type}>
-                                  {type}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
+                  {/* Form Content - Expandable with animation */}
+                  <div 
+                    className={`grid transition-all duration-300 ease-out ${
+                      isFormExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="px-4 lg:px-6 pb-4 lg:pb-6">
+                        <div className="flex flex-col lg:flex-row gap-4 items-end">
+                          {/* Goods Type Dropdown */}
+                          <div className="flex-1 w-full">
+                            <label className="block text-sm font-medium text-muted-foreground mb-2">
+                              Loại hàng hóa
+                            </label>
+                            <Select value={goodsType} onValueChange={setGoodsType}>
+                              <SelectTrigger className="w-full h-12 bg-background border-border">
+                                <SelectValue placeholder="Chọn loại hàng hóa" />
+                              </SelectTrigger>
+                              <SelectContent className="bg-background border-border z-50">
+                                {goodsTypes.map((type) => (
+                                  <SelectItem key={type} value={type}>
+                                    {type}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+
+                          {/* Quantity Input */}
+                          <div className="flex-1 w-full">
+                            <label className="block text-sm font-medium text-muted-foreground mb-2">
+                              Số lượng dự kiến (m³)
+                            </label>
+                            <Input
+                              type="number"
+                              placeholder="Nhập số lượng"
+                              value={quantity}
+                              onChange={(e) => setQuantity(e.target.value)}
+                              className="h-12 bg-background border-border"
+                            />
+                          </div>
+
+                          {/* Submit Button - Orange */}
+                          <div className="w-full lg:w-auto">
+                            <Button 
+                              size="lg"
+                              className="w-full lg:w-auto h-12 px-8 bg-orange-500 hover:bg-orange-600 text-white font-semibold whitespace-nowrap"
+                            >
+                              Nhận báo giá ngay
+                              <ArrowRight className="ml-2 h-5 w-5" />
+                            </Button>
+                          </div>
                         </div>
 
-                        {/* Quantity Input */}
-                        <div className="flex-1 w-full">
-                          <label className="block text-sm font-medium text-muted-foreground mb-2">
-                            Số lượng dự kiến (m³)
-                          </label>
-                          <Input
-                            type="number"
-                            placeholder="Nhập số lượng"
-                            value={quantity}
-                            onChange={(e) => setQuantity(e.target.value)}
-                            className="h-12 bg-background border-border"
-                          />
-                        </div>
-
-                        {/* Submit Button - Orange */}
-                        <div className="w-full lg:w-auto">
-                          <Button 
-                            size="lg"
-                            className="w-full lg:w-auto h-12 px-8 bg-orange-500 hover:bg-orange-600 text-white font-semibold whitespace-nowrap"
-                          >
-                            Nhận báo giá ngay
-                            <ArrowRight className="ml-2 h-5 w-5" />
-                          </Button>
-                        </div>
+                        <p className="text-xs text-muted-foreground text-center lg:text-left mt-4">
+                          Miễn phí tư vấn • Phản hồi trong 24h
+                        </p>
                       </div>
-
-                      <p className="text-xs text-muted-foreground text-center lg:text-left mt-4">
-                        Miễn phí tư vấn • Phản hồi trong 24h
-                      </p>
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
             </div>
